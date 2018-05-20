@@ -7,7 +7,6 @@ import {
     ScrollView
 } from 'react-native';
 import { TranfersStyle } from '../../assets/styles/main';
-import { listTransfers } from '../models'
 import _ from 'lodash';
 
 export default class Transfers extends Component{
@@ -38,12 +37,11 @@ export default class Transfers extends Component{
             <ScrollView>
                 {
                     _.values(this.state.data).map( transfer => {
-                        console.log(_.values(transfer.products))
                         const totalItems = _.values(transfer.products).reduce( (acc, val) => {
-                            return acc + val;
+                            return acc.item_quantity + val.item_quantity;
                         });
                         return (
-                            <View style={TranfersStyle.wrapper}>
+                            <View key={transfer.id} style={TranfersStyle.wrapper}>
                                 <View>
                                     <View>
                                         <Text style={TranfersStyle.addDate}>Added on {transfer.created_at}</Text>
