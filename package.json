@@ -1,0 +1,31 @@
+{
+  "name": "geosandro",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "jest": "^22.4.4",
+    "jest-react-native": "^18.0.0",
+    "react-test-renderer": "16.3.1"
+  },
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "dependencies": {
+    "autocompletetextview": "^1.0.5",
+    "babel-preset-react-native": "2.1.0",
+    "lodash": "^4.17.10",
+    "react": "16.3.1",
+    "react-native": "~0.55.2",
+    "react-native-dialogs": "0.0.21",
+    "react-native-swiper": "^1.5.13",
+    "react-navigation": "^2.0.1",
+    "realm": "^2.6.0"
+  }
+}

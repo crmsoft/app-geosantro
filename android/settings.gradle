@@ -1,0 +1,12 @@
+rootProject.name = 'geosandro'
+
+include ':autocompletetextview' // Add this
+project(':autocompletetextview').projectDir = file("../node_modules/autocompletetextview/android")
+
+include ':react-native-dialogs'
+project(':react-native-dialogs').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-dialogs/android')
+
+include ':realm'
+project(':realm').projectDir = new File(rootProject.projectDir, '../node_modules/realm/android')
+
+include ':app'
