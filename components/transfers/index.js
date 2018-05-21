@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { TranfersStyle } from '../../assets/styles/main';
 import _ from 'lodash';
-import { getDate } from '../models';
+import { getDate, syncTransfer } from '../models';
 
 export default class Transfers extends Component{
 
@@ -20,7 +20,7 @@ export default class Transfers extends Component{
         if(this.props.realmInstance !== null){
             return this.props.realmInstance
                         .objects('Transfer').sorted('created_at',true)
-        } return [];
+        } return {};
     }
 
     _removeUnsyncedTransfer( transfer_id ){
@@ -56,6 +56,29 @@ export default class Transfers extends Component{
                         data: items
                     });
                 })
+            }
+        }
+    }
+
+    _syncTransfer( transfer_id ){
+        const to_by_synced = this._getList().filtered(`id=${transfer_id} AND synced=false`);
+        if(to_by_synced[0]){
+            const result = syncTransfer(
+                this.props.realmInstance,
+                _.values(to_by_synced[0].products).map(product => {
+                    return {
+                        product_id:product.id,
+                        quantity: product.item_quantity
+                    }
+                }),
+                to_by_synced
+            );
+            // if the oop was good, 
+            // then just remove
+            if(result){
+                this.setState({
+                    data: this._getList()
+                });
             }
         }
     }
@@ -160,7 +183,7 @@ export default class Transfers extends Component{
                                         </TouchableHighlight>
                                         <TouchableHighlight
                                             style={{flex:1,alignContent:'center',justifyContent:'center'}}
-                                            onPress={ () => this._removeUnsyncedTransfer(transfer.id) }
+                                            onPress={ () => this._syncTransfer(transfer.id) }
                                         >
                                             <View style={TranfersStyle.actionSync}>
                                                 <Image 

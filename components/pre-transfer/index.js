@@ -109,7 +109,7 @@ export default class ProductList extends Component{
         };
         transfer.products = this.state.items.map( product => {
             return{
-                id: 11,
+                id: product.id,
                 transfer_id: 1,
                 product_id: product.id,
                 item_name: product.name,
