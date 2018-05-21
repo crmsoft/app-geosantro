@@ -26,11 +26,7 @@ export default class SyncPage extends Component{
     }
 
     componentWillMount(){
-        const dates = this._getLastSync();
-        this.setState({
-            last_sync_products: dates.p,
-            last_sync_transfers: dates.t
-        })
+        this._getLastSync();
     }
 
     _getLastSync = async () => {
@@ -43,7 +39,7 @@ export default class SyncPage extends Component{
         try{
             const last_sync_p = await AsyncStorage.getItem('@Store:sync_p');
             const last_sync_t = await AsyncStorage.getItem('@Store:sync_t');
-            
+
             if(last_sync_p !== null){
                 result.p = last_sync_p;
             }
@@ -55,8 +51,11 @@ export default class SyncPage extends Component{
         }catch(err){
             console.log(err);
         }
-
-        return result;
+        
+        this.setState({
+            last_sync_products: result.p,
+            last_sync_transfers: result.t
+        })
     }
 
     _synProducts = () => {

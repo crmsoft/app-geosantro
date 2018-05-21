@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { TranfersStyle } from '../../assets/styles/main';
 import _ from 'lodash';
+import { getDate } from '../models';
 
 export default class Transfers extends Component{
 
@@ -15,9 +16,15 @@ export default class Transfers extends Component{
         data: []
     }
 
+    _getList(){
+        if(this.props.realmInstance !== null){
+            return this.props.realmInstance
+                        .objects('Transfer').sorted('created_at',true)
+        } return [];
+    }
+
     _removeUnsyncedTransfer( transfer_id ){
         if(this.props.realmInstance !== null){
-            console.log(transfer_id);
             this.props.realmInstance.write(() => {
                 const to_delete = this.props.realmInstance
                                     .objects('Transfer')
@@ -25,17 +32,38 @@ export default class Transfers extends Component{
                 if(to_delete){
                     this.props.realmInstance.delete(to_delete)
                     this.setState({
-                        data: this.props.realmInstance.objects('Transfer')
+                        data: this._getList()
                     });
                 }
             });
         }
     }
 
+    _reorderTransfer( transfer_id ){
+        if(this.props.realmInstance !== null){
+            const items = this._getList();
+            const duplicate = items.filtered(`id=${transfer_id}`);
+            if(duplicate[0]){
+                const next_id = items.max('id') + 1;
+                this.props.realmInstance.write(() => {
+                    this.props.realmInstance.create('Transfer',{
+                        ...duplicate[0],
+                        synced: false,
+                        id: next_id,
+                        created_at: getDate()
+                    });
+                    this.setState({
+                        data: items
+                    });
+                })
+            }
+        }
+    }
+
     componentWillMount(){
         if(this.props.realmInstance !== null){
             this.setState({
-                data: this.props.realmInstance.objects('Transfer')
+                data: this._getList()
             });
         }
     }
@@ -44,7 +72,7 @@ export default class Transfers extends Component{
 
         if(prevProps.realmInstance !==this.props.realmInstance){
             this.setState({
-                data: this.props.realmInstance.objects('Transfer')
+                data: this._getList()
             });
         }
     }
@@ -78,17 +106,23 @@ export default class Transfers extends Component{
                                         <Text style={TranfersStyle.syncDate}>{transfer.updated_at}</Text>
                                     </View>
                                 </View>
+                                
                                 <View 
                                     style={TranfersStyle.actionsWrapper}>
-                                    <View 
-                                        style={TranfersStyle.actionReorder}>
-                                        <Image 
-                                            style={TranfersStyle.statusIcon} 
-                                            source={require('../../assets/img/re-order.jpg')}/>
-                                        <Text>  </Text>
-                                        <Text 
-                                            style={TranfersStyle.actionText}>Reorder</Text>
-                                    </View>
+                                    <TouchableHighlight
+                                        style={{flex:1,alignContent:'center',justifyContent:'center'}}
+                                        onPress={ () => this._reorderTransfer(transfer.id)}
+                                    >
+                                        <View 
+                                            style={TranfersStyle.actionReorder}>
+                                            <Image 
+                                                style={TranfersStyle.statusIcon} 
+                                                source={require('../../assets/img/re-order.jpg')}/>
+                                            <Text>  </Text>
+                                            <Text 
+                                                style={TranfersStyle.actionText}>Reorder</Text>
+                                        </View>
+                                    </TouchableHighlight>
                                 </View>
                             </View>
                             ) : (
@@ -110,23 +144,33 @@ export default class Transfers extends Component{
                                     </View>
                                     <View 
                                         style={TranfersStyle.actionsWrapper}>
-                                        <View 
-                                            style={TranfersStyle.actionReorder}>
-                                            <Image 
-                                                style={TranfersStyle.statusIcon} 
-                                                source={require('../../assets/img/re-order.jpg')}/>
-                                            <Text>  </Text>
-                                            <Text 
-                                                style={TranfersStyle.actionText}>Reorder</Text>
-                                        </View>
-                                        <View style={TranfersStyle.actionSync}>
-                                            <Image 
-                                                style={TranfersStyle.statusIcon} 
-                                                source={require('../../assets/img/net-connection.png')}/>
-                                            <Text>  </Text>
-                                            <Text 
-                                                style={TranfersStyle.actionText}>Sync</Text>
-                                        </View> 
+                                        <TouchableHighlight
+                                            style={{flex:1,alignContent:'center',justifyContent:'center'}}
+                                            onPress={ () => this._reorderTransfer(transfer.id) }
+                                        >
+                                            <View 
+                                                style={TranfersStyle.actionReorder}>
+                                                <Image 
+                                                    style={TranfersStyle.statusIcon} 
+                                                    source={require('../../assets/img/re-order.jpg')}/>
+                                                <Text>  </Text>
+                                                <Text 
+                                                    style={TranfersStyle.actionText}>Reorder</Text>
+                                            </View>
+                                        </TouchableHighlight>
+                                        <TouchableHighlight
+                                            style={{flex:1,alignContent:'center',justifyContent:'center'}}
+                                            onPress={ () => this._removeUnsyncedTransfer(transfer.id) }
+                                        >
+                                            <View style={TranfersStyle.actionSync}>
+                                                <Image 
+                                                    style={TranfersStyle.statusIcon} 
+                                                    source={require('../../assets/img/net-connection.png')}/>
+                                                <Text>  </Text>
+                                                <Text 
+                                                    style={TranfersStyle.actionText}>Sync</Text>
+                                            </View> 
+                                        </TouchableHighlight>
                                         <TouchableHighlight
                                             style={{flex:1,alignContent:'center',justifyContent:'center'}}
                                             onPress={ () => this._removeUnsyncedTransfer(transfer.id) }
