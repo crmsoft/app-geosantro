@@ -8,6 +8,26 @@ import _ from 'lodash';
 import { default_image } from '../../assets/img/default-image.json';
 import config from './config';
 
+// date in format : D/MM/Y h:mm
+export const getDate = () => {
+
+    let date = new Date();
+    
+    let d = date.getDate()
+    let m = 1 + date.getMonth();
+    let y = date.getFullYear();
+
+    let h = date.getHours();
+    let i = date.getMinutes();
+
+    let mm = m <= 9 ? `0${m}`:m;
+    let dd = d <= 9 ? `0${d}`:d;
+    let hh = h <= 9 ? `0${h}`:h;
+    let ii = i <= 9 ? `0${i}`:i;
+
+    return `${dd}/${mm}/${y} ${hh}:${ii}`
+}
+
 const _get = ( obj, path, def_value = '' ) => {
     let lodash_get = _.get(obj, path, def_value);
 
@@ -74,7 +94,7 @@ export const synTransfers = async ( dbInstance ) => {
     })
     const content = await rawResponse.json();
     const list = _get(content, 'data', undefined);
-    /*
+    
     if(list){
         // fetch required fields from json...
         const data = list.map((transfer) => {
@@ -91,7 +111,7 @@ export const synTransfers = async ( dbInstance ) => {
                 synced: true,
                 products: items.map( product => {
                     return{
-                        id: ~~item.id,
+                        id: ~~product.id,
                         transfer_id: ~~_get(product,'attributes.transfer_id', 0),
                         product_id: ~~_get(product,'attributes.product_id', 0),
                         item_name: _get(product,'attributes.item_name', ''),
@@ -122,7 +142,7 @@ export const synTransfers = async ( dbInstance ) => {
         
     }else{
         console.log( 'the response was unsuccessful' )
-    }    */
+    }  
 }
 
 export const createTransfer = ( dbInstance ) => {

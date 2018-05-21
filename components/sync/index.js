@@ -12,17 +12,79 @@ import { SyncStyle } from '../../assets/styles/main';
 import DialogAndroid from 'react-native-dialogs';
 import { 
     synProducts,
-    synTransfers
+    synTransfers,
+    getDate
 } from '../models';
 
 export default class SyncPage extends Component{
     
+    state = {
+        last_sync_products: '',
+        last_sync_transfers: ''
+    }
+
+    componentWillMount(){
+        const dates = this._getLastSync();
+        this.setState({
+            last_sync_products: dates.p,
+            last_sync_transfers: dates.t
+        })
+    }
+
+    _getLastSync = async () => {
+        
+        const result = {
+            p: '--/--/-- --:--',
+            t: '--/--/-- --:--'
+        };
+
+        try{
+            const last_sync_p = await AsyncStorage.getItem('@Store:sync_p');
+            const last_sync_t = await AsyncStorage.getItem('@Store:sync_t');
+            
+            if(last_sync_p !== null){
+                result.p = last_sync_p;
+            }
+
+            if(last_sync_t !== null){
+                result.t = last_sync_t;
+            }
+
+        }catch(err){
+            console.log(err);
+        }
+
+        return result;
+    }
+
     _synProducts = () => {
         synProducts(this.props.realmInstance);
+        (async () => {
+            try{
+                const s_date = getDate();
+                await AsyncStorage.setItem('@Store:sync_p', s_date)
+                this.setState({
+                    last_sync_products: s_date
+                })
+            }catch(err){
+                console.log(err);
+            }
+        })()
     }
 
     _synTransfers = () => {
         synTransfers(this.props.realmInstance);
+        (async () => {
+            try{
+                const s_date = getDate();
+                await AsyncStorage.setItem('@Store:sync_t', s_date)
+                this.setState({
+                    last_sync_transfers: s_date
+                })
+            }catch(err){
+                console.log(err);
+            }
+        })()
     }
 
     render(){
@@ -33,7 +95,7 @@ export default class SyncPage extends Component{
                         <Text style={SyncStyle.title}>Sync Products</Text>
                     </View>
                     <View>
-                        <Text>Last synced dd/mm/Y H:i:s</Text>
+                        <Text>Last synced {this.state.last_sync_products}</Text>
                     </View>
                     <View style={SyncStyle.actionWrapper}>
                         <TouchableHighlight 
@@ -52,7 +114,7 @@ export default class SyncPage extends Component{
                         <Text style={SyncStyle.title}>Sync Transfers</Text>
                     </View>
                     <View>
-                        <Text>Last synced dd/mm/Y H:i:s</Text>
+                        <Text>Last synced {this.state.last_sync_transfers}</Text>
                     </View>
                     <View style={SyncStyle.actionWrapper}>
                         <TouchableHighlight 

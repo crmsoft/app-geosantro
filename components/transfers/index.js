@@ -15,6 +15,23 @@ export default class Transfers extends Component{
         data: []
     }
 
+    _removeUnsyncedTransfer( transfer_id ){
+        if(this.props.realmInstance !== null){
+            console.log(transfer_id);
+            this.props.realmInstance.write(() => {
+                const to_delete = this.props.realmInstance
+                                    .objects('Transfer')
+                                    .filtered(`id = ${transfer_id}`);
+                if(to_delete){
+                    this.props.realmInstance.delete(to_delete)
+                    this.setState({
+                        data: this.props.realmInstance.objects('Transfer')
+                    });
+                }
+            })
+        }
+    }
+
     componentWillMount(){
         if(this.props.realmInstance !== null){
             this.setState({
@@ -37,6 +54,7 @@ export default class Transfers extends Component{
             <ScrollView>
                 {
                     _.values(this.state.data).map( transfer => {
+                        console.log(transfer.products);
                         const totalItems = _.values(transfer.products).reduce( (acc, val) => {
                             return acc.item_quantity + val.item_quantity;
                         },0);
@@ -110,15 +128,19 @@ export default class Transfers extends Component{
                                             <Text 
                                                 style={TranfersStyle.actionText}>Sync</Text>
                                         </View> 
-                                        <View 
-                                            style={TranfersStyle.actionDelete}>
-                                            <Image 
-                                                style={TranfersStyle.statusIcon} 
-                                                source={require('../../assets/img/delete.jpg')}/>
-                                            <Text>  </Text>
-                                            <Text 
-                                                style={TranfersStyle.actionText}>Delete</Text>
-                                        </View>
+                                        <TouchableHighlight
+                                            style={{flex:1,alignContent:'center',justifyContent:'center'}}
+                                            onPress={ () => this._removeUnsyncedTransfer(transfer.id) }
+                                        >
+                                            <View style={TranfersStyle.actionDelete}>
+                                                <Image 
+                                                    style={TranfersStyle.statusIcon} 
+                                                    source={require('../../assets/img/delete.jpg')}/>
+                                                <Text>  </Text>
+                                                <Text 
+                                                    style={TranfersStyle.actionText}>Delete</Text>
+                                            </View>
+                                        </TouchableHighlight>
                                     </View>
                                 </View>
                             )

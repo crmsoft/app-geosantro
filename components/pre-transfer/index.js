@@ -13,27 +13,7 @@ import {
     ProductListStyle,
     TranfersStyle
 } from '../../assets/styles/main';
-import { instance } from '../models/';
-
-// date in format : D/MM/Y h:mm
-const getDate = () => {
-
-    let date = new Date();
-    
-    let d = date.getDate()
-    let m = 1 + date.getMonth();
-    let y = date.getFullYear();
-
-    let h = date.getHours();
-    let i = date.getMinutes();
-
-    let mm = m <= 9 ? `0${m}`:m;
-    let dd = d <= 9 ? `0${d}`:d;
-    let hh = h <= 9 ? `0${h}`:h;
-    let ii = i <= 9 ? `0${i}`:i;
-
-    return `${dd}/${mm}/${y} ${hh}:${ii}`
-}
+import { instance, getDate } from '../models/';
 
 export default class ProductList extends Component{
 
@@ -84,7 +64,6 @@ export default class ProductList extends Component{
                 const new_items = JSON.parse(items).filter( item => {
                     return item.id !== id
                 });
-                console.log(new_items);
                 await AsyncStorage.setItem('@Store:pre_transfer_items', JSON.stringify(new_items));
                 await this.loadItems();
             }
@@ -128,7 +107,6 @@ export default class ProductList extends Component{
         };
 
         transfer.products = this.state.items.map( product => {
-            console.log(product);
             return{
                 id: 11,
                 transfer_id: 1,
@@ -230,7 +208,7 @@ export default class ProductList extends Component{
                 }
                 <View style={TranfersStyle.requestTransferWrapper}>
                     <TouchableHighlight
-                        style={{ flex:1 }}
+                        style={{ flex:1, alignContent:'center',justifyContent:'center' }}
                         onPress={ () => this.createTransfer() }>
                         <Text style={TranfersStyle.requestTransferText}>Request Transfer</Text>
                     </TouchableHighlight>
