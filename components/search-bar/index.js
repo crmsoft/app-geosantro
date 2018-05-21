@@ -19,7 +19,7 @@ export default class SearchBar extends React.Component{
         return(
             <View style={SearchBarStyles.container}>
                 <View style={SearchBarStyles.row}>
-                    <TouchableHighlight onPress={ () => { console.log(52); } } style={SearchBarStyles.iconWrapper}>
+                    <TouchableHighlight style={SearchBarStyles.iconWrapper}>
                         <Image
                             style={SearchBarStyles.imageIcon}
                             source={require('../../assets/img/search.jpg')}

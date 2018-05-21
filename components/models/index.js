@@ -6,6 +6,7 @@ import {
 } from './schmeas';
 import _ from 'lodash';
 import { default_image } from '../../assets/img/default-image.json';
+import config from './config';
 
 const _get = ( obj, path, def_value = '' ) => {
     let lodash_get = _.get(obj, path, def_value);
@@ -21,7 +22,7 @@ export const synProducts = async ( dbInstance ) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({'api_key':''})
+        body: JSON.stringify(config)
     });
     const content = await rawResponse.json();
 
@@ -46,24 +47,16 @@ export const synProducts = async ( dbInstance ) => {
         });
 
         // save to db...
-        /*Realm.open({
-            schema: [ Product ],
-            schemaVersion: 2
-        }).then(realm => {*/
-            // store fresh fields
-            dbInstance.write(() => {
-                // before store - remove old ones
-                const old = dbInstance.objects(Product.name);
-                if(old)
-                    dbInstance.delete( old );
-                // push items
-                data.forEach(item => {
-                    dbInstance.create(Product.name, item);                
-                });
+        dbInstance.write(() => {
+            // before store - remove old ones
+            const old = dbInstance.objects(Product.name);
+            if(old)
+                dbInstance.delete( old );
+            // push items
+            data.forEach(item => {
+                dbInstance.create(Product.name, item);                
             });
-        /*}).catch(error => {
-            console.log(error);
-        });*/
+        });
     }else{
         console.log( 'the response was unsuccessful' )
     }    
@@ -77,40 +70,40 @@ export const synTransfers = async ( dbInstance ) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({'api_key':''})
+        body: JSON.stringify(config)
     })
     const content = await rawResponse.json();
     const list = _get(content, 'data', undefined);
     
     if(list){
         // fetch required fields from json...
-        const data = list.map((product) => {
+        const data = list.map((transfer) => {
             
-            const items = _get(product,'relationships.items', []);
+            const items = _get(transfer,'relationships.items', []);
             return {
-                id: ~~product.id,
-                user_id: ~~_get(product,'attributes.user_id', 0),
-                user_name: _get(product,'attributes.user_name',''),
-                user_email: _get(product,'attributes.user_email',''),
-                status: _get(product,'attributes.status', 'pending'),
-                created_at: _get(product,'attributes.created_at',''),
-                updated_at: _get(product,'attributes.updated_at',''),
+                id: ~~transfer.id,
+                user_id: ~~_get(transfer,'attributes.user_id', 0),
+                user_name: _get(transfer,'attributes.user_name',''),
+                user_email: _get(transfer,'attributes.user_email',''),
+                status: _get(transfer,'attributes.status', 'pending'),
+                created_at: _get(transfer,'attributes.created_at',''),
+                updated_at: _get(transfer,'attributes.updated_at',''),
                 synced: true,
-                products: items.map( item => {
+                products: items.map( product => {
                     return{
                         id: ~~item.id,
-                        transfer_id: ~~_get(item,'attributes.transfer_id', 0),
-                        product_id: ~~_get(item,'attributes.product_id', 0),
-                        item_name: _get(item,'attributes.item_name', ''),
-                        item_sku: _get(item,'attributes.item_sku', ''),
-                        item_barcode: _get(item,'attributes.item_barcode', ''),
-                        item_price: ~~_get(item,'attributes.item_price', 0),
-                        item_quantity: ~~_get(item,'attributes.item_quantity', 0),
-                        item_new_quantity: ~~_get(item,'attributes.item_new_quantity', 0),
-                        item_comments: _get(item,'attributes.item_comments', ''),
-                        for_delete: ~~_get(item,'attributes.for_delete', 0),
-                        created_at: _get(item,'attributes.created_at', ''),
-                        updated_at: _get(item,'attributes.updated_at', '')
+                        transfer_id: ~~_get(product,'attributes.transfer_id', 0),
+                        product_id: ~~_get(product,'attributes.product_id', 0),
+                        item_name: _get(product,'attributes.item_name', ''),
+                        item_sku: _get(product,'attributes.item_sku', ''),
+                        item_barcode: _get(product,'attributes.item_barcode', ''),
+                        item_price: ~~_get(product,'attributes.item_price', 0),
+                        item_quantity: ~~_get(product,'attributes.item_quantity', 0),
+                        item_new_quantity: ~~_get(product,'attributes.item_new_quantity', 0),
+                        item_comments: _get(product,'attributes.item_comments', ''),
+                        for_delete: ~~_get(product,'attributes.for_delete', 0),
+                        created_at: _get(product,'attributes.created_at', ''),
+                        updated_at: _get(product,'attributes.updated_at', '')
                     }
                 })
             }
@@ -118,8 +111,9 @@ export const synTransfers = async ( dbInstance ) => {
 
         dbInstance.write(() => {
             // before store - remove old ones
-            const old = dbInstance.objects(Transfer.name);
-                if(old)
+            const old = dbInstance.objects(Transfer.name).filtered('synced = true');
+            if(old)
+                dbInstance.delete( old );
 
             data.forEach(item => {
                 dbInstance.create(Transfer.name, item);                
@@ -131,20 +125,11 @@ export const synTransfers = async ( dbInstance ) => {
     }    
 }
 
-export const listTransfers = () => {
-    return Realm.open({
-        schema: [ Transfer, TransferItem ],
-        schemaVersion: 2
-    });
+export const createTransfer = ( dbInstance ) => {
+
 }
 
-export const listProducts = () => {
-    return Realm.open({
-        schema: [ Product, Transfer, TransferItem ],
-        schemaVersion: 2
-    });
-}
-
+// can be only one instace...
 export const instance = async () => {
     return Realm.open({
         schema: [ Product, Transfer, TransferItem ],

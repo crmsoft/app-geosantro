@@ -39,8 +39,9 @@ export default class Transfers extends Component{
                     _.values(this.state.data).map( transfer => {
                         const totalItems = _.values(transfer.products).reduce( (acc, val) => {
                             return acc.item_quantity + val.item_quantity;
-                        });
+                        },0);
                         return (
+                            transfer.sunced ? (
                             <View key={transfer.id} style={TranfersStyle.wrapper}>
                                 <View>
                                     <View>
@@ -73,6 +74,54 @@ export default class Transfers extends Component{
                                     </View>
                                 </View>
                             </View>
+                            ) : (
+                                <View style={TranfersStyle.wrapper}>
+                                    <View>
+                                        <View>
+                                            <Text style={TranfersStyle.addDate}>Added on {transfer.created_at}</Text>
+                                        </View>
+                                        <View>
+                                            <Text># {totalItems}</Text>
+                                        </View>
+                                    </View>
+                                    <View style={TranfersStyle.statusWrapper}>
+                                        <View style={TranfersStyle.statusContent}>
+                                            <Image style={TranfersStyle.statusIcon} source={require('../../assets/img/no-sync.png')}/>
+                                            <Text>   </Text>
+                                            <Text style={TranfersStyle.statusErrorText}>Not Synced</Text>
+                                        </View>
+                                    </View>
+                                    <View 
+                                        style={TranfersStyle.actionsWrapper}>
+                                        <View 
+                                            style={TranfersStyle.actionReorder}>
+                                            <Image 
+                                                style={TranfersStyle.statusIcon} 
+                                                source={require('../../assets/img/re-order.jpg')}/>
+                                            <Text>  </Text>
+                                            <Text 
+                                                style={TranfersStyle.actionText}>Reorder</Text>
+                                        </View>
+                                        <View style={TranfersStyle.actionSync}>
+                                            <Image 
+                                                style={TranfersStyle.statusIcon} 
+                                                source={require('../../assets/img/net-connection.png')}/>
+                                            <Text>  </Text>
+                                            <Text 
+                                                style={TranfersStyle.actionText}>Sync</Text>
+                                        </View> 
+                                        <View 
+                                            style={TranfersStyle.actionDelete}>
+                                            <Image 
+                                                style={TranfersStyle.statusIcon} 
+                                                source={require('../../assets/img/delete.jpg')}/>
+                                            <Text>  </Text>
+                                            <Text 
+                                                style={TranfersStyle.actionText}>Delete</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            )
                         );
                     })
                 }
@@ -81,52 +130,3 @@ export default class Transfers extends Component{
         );
     }
 }
-
-/**
- * <View style={TranfersStyle.wrapper}>
-                    <View>
-                        <View>
-                            <Text style={TranfersStyle.addDate}>Added on dd/mm/Y H:i:s</Text>
-                        </View>
-                        <View>
-                            <Text># Items</Text>
-                        </View>
-                    </View>
-                    <View style={TranfersStyle.statusWrapper}>
-                        <View style={TranfersStyle.statusContent}>
-                            <Image style={TranfersStyle.statusIcon} source={require('../../assets/img/no-sync.png')}/>
-                            <Text>   </Text>
-                            <Text style={TranfersStyle.statusErrorText}>Not Synced</Text>
-                        </View>
-                    </View>
-                    <View 
-                        style={TranfersStyle.actionsWrapper}>
-                        <View 
-                            style={TranfersStyle.actionReorder}>
-                            <Image 
-                                style={TranfersStyle.statusIcon} 
-                                source={require('../../assets/img/re-order.jpg')}/>
-                            <Text>  </Text>
-                            <Text 
-                                style={TranfersStyle.actionText}>Reorder</Text>
-                        </View>
-                        <View style={TranfersStyle.actionSync}>
-                            <Image 
-                                style={TranfersStyle.statusIcon} 
-                                source={require('../../assets/img/net-connection.png')}/>
-                            <Text>  </Text>
-                            <Text 
-                                style={TranfersStyle.actionText}>Sync</Text>
-                        </View> 
-                        <View 
-                            style={TranfersStyle.actionDelete}>
-                            <Image 
-                                style={TranfersStyle.statusIcon} 
-                                source={require('../../assets/img/delete.jpg')}/>
-                            <Text>  </Text>
-                            <Text 
-                                style={TranfersStyle.actionText}>Delete</Text>
-                        </View>
-                    </View>
-                </View>
- */
