@@ -134,7 +134,7 @@ export default class ProductList extends Component{
                 product_id: product.id,
                 item_name: product.name,
                 item_sku: product.sku,
-                item_barcode: product.barckode,
+                item_barcode: product.barcode,
                 item_price: product.price,
                 item_quantity: product.selected_quantity.pop(),
                 item_new_quantity: 0,
