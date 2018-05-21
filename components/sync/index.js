@@ -16,6 +16,8 @@ import {
     getDate
 } from '../models';
 
+import config from '../models/config';
+
 export default class SyncPage extends Component{
     
     state = {
@@ -135,7 +137,7 @@ export default class SyncPage extends Component{
                         </Text>
                         <View style={SyncStyle.hintSub}>
                             <Text>
-                                Serial No. #######
+                                Serial No. {config.api_key}
                             </Text>
                         </View>
                     </View>
