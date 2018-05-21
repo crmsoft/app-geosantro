@@ -30,7 +30,7 @@ export default class ProductList extends Component{
         if(target){
             
             const data = Array.apply(null, Array(~~target[0].stock)).map(function (a,i) {
-                return  i;
+                return  i + 1;
             });
 
             Picker.init({
@@ -38,7 +38,7 @@ export default class ProductList extends Component{
                 pickerTitleText: target[0].name,  
                 selectedValue: [2],
                 onPickerConfirm: async data => {
-                    target.selected_quantity = data;
+                    target.selected_quantity = [data[0]++];
                     try {
                         let value = await AsyncStorage.getItem('@Store:pre_transfer_items')
                             ,already_in = false;

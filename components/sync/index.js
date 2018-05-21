@@ -4,6 +4,7 @@ import {
     ScrollView,
     Text,
     TouchableHighlight,
+    AsyncStorage,
     Image,
     Alert
 } from 'react-native';
@@ -15,11 +16,12 @@ import {
 } from '../models';
 
 export default class SyncPage extends Component{
-    showDialogAndroid = () => {
+    
+    _synProducts = () => {
         synProducts(this.props.realmInstance);
     }
 
-    foo = () => {
+    _synTransfers = () => {
         synTransfers(this.props.realmInstance);
     }
 
@@ -35,7 +37,7 @@ export default class SyncPage extends Component{
                     </View>
                     <View style={SyncStyle.actionWrapper}>
                         <TouchableHighlight 
-                            onPress={ this.showDialogAndroid }
+                            onPress={ this._synProducts }
                             style={SyncStyle.actionInner}>
                             <View style={SyncStyle.actionContent}>
                                 <Image style={SyncStyle.actionIcon} source={require('../../assets/img/net-connection.png')}/>
@@ -54,7 +56,7 @@ export default class SyncPage extends Component{
                     </View>
                     <View style={SyncStyle.actionWrapper}>
                         <TouchableHighlight 
-                            onPress={ this.foo }
+                            onPress={ this._synTransfers }
                             style={SyncStyle.actionInner}>
                             <View style={SyncStyle.actionContent}>
                                 <Image style={SyncStyle.actionIcon} source={require('../../assets/img/net-connection.png')}/>

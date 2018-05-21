@@ -41,7 +41,7 @@ export default class Transfers extends Component{
                             return acc.item_quantity + val.item_quantity;
                         },0);
                         return (
-                            transfer.sunced ? (
+                            transfer.synced ? (
                             <View key={transfer.id} style={TranfersStyle.wrapper}>
                                 <View>
                                     <View>
@@ -75,7 +75,7 @@ export default class Transfers extends Component{
                                 </View>
                             </View>
                             ) : (
-                                <View style={TranfersStyle.wrapper}>
+                                <View key={transfer.id} style={TranfersStyle.wrapper}>
                                     <View>
                                         <View>
                                             <Text style={TranfersStyle.addDate}>Added on {transfer.created_at}</Text>

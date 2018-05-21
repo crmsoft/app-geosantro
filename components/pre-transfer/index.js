@@ -128,6 +128,7 @@ export default class ProductList extends Component{
         };
 
         transfer.products = this.state.items.map( product => {
+            console.log(product);
             return{
                 id: 11,
                 transfer_id: 1,
@@ -135,8 +136,8 @@ export default class ProductList extends Component{
                 item_name: product.name,
                 item_sku: product.sku,
                 item_barcode: product.barcode,
-                item_price: product.price,
-                item_quantity: product.selected_quantity.pop(),
+                item_price: 0,
+                item_quantity: ~~product.selected_quantity.pop(),
                 item_new_quantity: 0,
                 item_comments: '',
                 for_delete: 0,
@@ -225,10 +226,11 @@ export default class ProductList extends Component{
                             )
                         })
                     }
-                    </ScrollView> : (<Text>Empty</Text>)
+                    </ScrollView> : (<View><Text>Empty</Text></View>)
                 }
                 <View style={TranfersStyle.requestTransferWrapper}>
                     <TouchableHighlight
+                        style={{ flex:1 }}
                         onPress={ () => this.createTransfer() }>
                         <Text style={TranfersStyle.requestTransferText}>Request Transfer</Text>
                     </TouchableHighlight>

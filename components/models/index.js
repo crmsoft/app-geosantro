@@ -74,7 +74,7 @@ export const synTransfers = async ( dbInstance ) => {
     })
     const content = await rawResponse.json();
     const list = _get(content, 'data', undefined);
-    
+    /*
     if(list){
         // fetch required fields from json...
         const data = list.map((transfer) => {
@@ -122,7 +122,7 @@ export const synTransfers = async ( dbInstance ) => {
         
     }else{
         console.log( 'the response was unsuccessful' )
-    }    
+    }    */
 }
 
 export const createTransfer = ( dbInstance ) => {
