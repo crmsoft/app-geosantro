@@ -93,9 +93,11 @@ export default class ProductList extends Component{
         const realm = await instance();
 
         const creation_date = getDate();
+        
+        const next_id = realm.objects('Transfer').max('id') + 1;
 
         const transfer = {
-            id: 1,
+            id: next_id,
             user_id:1,
             user_name: 'product.user_name',
             user_email: 'product.user_email',
@@ -105,7 +107,6 @@ export default class ProductList extends Component{
             synced: false,
             products: []
         };
-
         transfer.products = this.state.items.map( product => {
             return{
                 id: 11,
@@ -176,12 +177,13 @@ export default class ProductList extends Component{
                                             <View style={TranfersStyle.pickerWrapper}>
                                                 <Picker
                                                     prompt={ `Qunatity: ${item.name}` }
-                                                    selectedValue={~~item.selected_quantity.pop()}
+                                                    selectedValue={~~item.selected_quantity[0]}
                                                     onValueChange={(itemValue) => this.changeQuantity(item.id,itemValue)}>
                                                     
                                                     {
                                                         Array.apply(null, Array(~~item.stock)).map(function (a,i) {
-                                                            return <Picker.Item label={`${i}`} value={i+1} key={`option_${i}`} />
+                                                            const index = ++i;
+                                                            return <Picker.Item label={`${index}`} value={index} key={`option_${index}`} />
                                                         })
                                                     }
                                                 </Picker>

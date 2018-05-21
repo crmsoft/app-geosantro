@@ -38,7 +38,7 @@ export default class ProductList extends Component{
                 pickerTitleText: target[0].name,  
                 selectedValue: [2],
                 onPickerConfirm: async data => {
-                    target.selected_quantity = [data[0]++];
+                    target.selected_quantity = data;
                     try {
                         let value = await AsyncStorage.getItem('@Store:pre_transfer_items')
                             ,already_in = false;
@@ -55,7 +55,7 @@ export default class ProductList extends Component{
                                 break;
                             }
                         }
-                        if(!already_in){
+                        if(already_in === false){
                             value.push({
                                 id: item_id,
                                 quantity: data

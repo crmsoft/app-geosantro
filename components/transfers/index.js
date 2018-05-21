@@ -28,7 +28,7 @@ export default class Transfers extends Component{
                         data: this.props.realmInstance.objects('Transfer')
                     });
                 }
-            })
+            });
         }
     }
 
@@ -54,9 +54,8 @@ export default class Transfers extends Component{
             <ScrollView>
                 {
                     _.values(this.state.data).map( transfer => {
-                        console.log(transfer.products);
                         const totalItems = _.values(transfer.products).reduce( (acc, val) => {
-                            return acc.item_quantity + val.item_quantity;
+                            return acc + val.item_quantity;
                         },0);
                         return (
                             transfer.synced ? (
