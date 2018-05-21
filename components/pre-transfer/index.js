@@ -15,6 +15,25 @@ import {
 } from '../../assets/styles/main';
 import { instance } from '../models/';
 
+// date in format : D/MM/Y h:mm
+const getDate = () => {
+
+    let date = new Date();
+    
+    let d = date.getDate()
+    let m = 1 + date.getMonth();
+    let y = date.getFullYear();
+
+    let h = date.getHours();
+    let i = date.getMinutes();
+
+    let mm = m <= 9 ? `0${m}`:m;
+    let dd = d <= 9 ? `0${d}`:d;
+    let hh = h <= 9 ? `0${h}`:h;
+    let ii = i <= 9 ? `0${i}`:i;
+
+    return `${dd}/${mm}/${y} ${hh}:${ii}`
+}
 
 export default class ProductList extends Component{
 
@@ -94,7 +113,7 @@ export default class ProductList extends Component{
     createTransfer = async () => {
         const realm = await instance();
 
-        const creation_date = 'just now';//moment().format('D/MM/Y h:mm');
+        const creation_date = getDate();
 
         const transfer = {
             id: 1,
