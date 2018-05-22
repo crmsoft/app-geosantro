@@ -31,9 +31,12 @@ export default class Transfers extends Component{
                                     .filtered(`id = ${transfer_id}`);
                 if(to_delete){
                     this.props.realmInstance.delete(to_delete)
-                    this.setState({
-                        data: this._getList()
-                    });
+                    // tmp work around
+                    setTimeout(() => {
+                        /*this.setState({
+                            data: this._getList()
+                        });*/
+                    },100)
                 }
             });
         }
@@ -52,9 +55,6 @@ export default class Transfers extends Component{
                         id: next_id,
                         created_at: getDate()
                     });
-                    this.setState({
-                        data: items
-                    });
                 })
             }
         }
@@ -63,7 +63,7 @@ export default class Transfers extends Component{
     _syncTransfer( transfer_id ){
         const to_by_synced = this._getList().filtered(`id=${transfer_id} AND synced=false`);
         if(to_by_synced[0]){
-            const result = syncTransfer(
+            syncTransfer(
                 this.props.realmInstance,
                 _.values(to_by_synced[0].products).map(product => {
                     return {
@@ -72,14 +72,9 @@ export default class Transfers extends Component{
                     }
                 }),
                 to_by_synced
-            );
-            // if the oop was good, 
-            // then just remove
-            if(result){
-                this.setState({
-                    data: this._getList()
-                });
-            }
+            ).then(result => {
+                
+            })            
         }
     }
 
@@ -92,8 +87,15 @@ export default class Transfers extends Component{
     }
 
     componentDidUpdate(prevProps, prevState){
-
+        console.log('componentDidUpdate');
         if(prevProps.realmInstance !==this.props.realmInstance){
+            this.props.realmInstance.removeAllListeners();
+            this.props.realmInstance.addListener('change', () => {
+                this.setState({
+                    data: this._getList()
+                });
+                console.log('update the state');
+            });
             this.setState({
                 data: this._getList()
             });

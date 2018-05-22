@@ -49,7 +49,7 @@ const transferResponseToModel = ( list ) => {
             synced: true,
             products: items.map( product => {
                 return{
-                    id: ~~product.id,
+                    id: ~~_get(product,'attributes.product_id',0),
                     transfer_id: ~~_get(product,'attributes.transfer_id', 0),
                     product_id: ~~_get(product,'attributes.product_id', 0),
                     item_name: _get(product,'attributes.item_name', ''),
@@ -166,14 +166,16 @@ export const syncTransfer = async ( dbInstance, data, old_one ) => {
     // if the back-end return us some data,
     // the request was successful
     const list = _get(content, 'data', undefined);
-    
+
     if(list){
         // push new synced value
         dbInstance.write(() => {
-            dbInstance.delete(old_one);
-            transferResponseToModel(_.values(list)).forEach(item => {
+            const vals = transferResponseToModel([list]);
+            console.log(vals);
+            vals.forEach(item => {
                 dbInstance.create(Transfer.name, item);                
             });
+            dbInstance.delete(old_one);
         });
         return true;
     } return false;
