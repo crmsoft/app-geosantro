@@ -195,6 +195,10 @@ export default class ProductList extends Component{
                                                     <Text numberOfLines={1}>SKU: { item.sku } / Barcode: { item.barcode }</Text>
                                                 </View>
 
+                                                <View>
+                                                    <Text numberOfLines={1}>Stock: { item.stock }</Text>
+                                                </View>
+
                                                 <View style={TranfersStyle.pickerWrapper}>
                                                     <Picker
                                                         prompt={ `Qunatity: ${item.name}` }

@@ -108,6 +108,7 @@ export const TranfersStyle = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.9,
         shadowRadius: 2,
+        marginTop: -1 * SPACING
     },
     listWrapper: {
         paddingBottom: BIG_BTN_HEIGHT + SPACING,
@@ -177,7 +178,7 @@ export const SyncStyle = StyleSheet.create({
 
 export const ProductListStyle = StyleSheet.create({
     wrapper: {
-        height: 150,
+        height: 170,
         backgroundColor: 'white',
         marginBottom: SPACING
     },

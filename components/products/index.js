@@ -25,7 +25,7 @@ export default class ProductList extends Component{
                             .objects('Product')
                                 .filtered(`id = ${item_id}`);
         if(target){
-            const title = target[0].name.length > 20 ? target[0].name.substring(0,20) + `...`:target[0].name;
+            const title = target[0].name.length > 19 ? target[0].name.substring(0,20) + `...`:target[0].name;
             const data = `${target[0].stock}`.split('').map( i => {
                 return ['',0,1,2,3,4,5,6,7,8,9]
             });
@@ -37,7 +37,7 @@ export default class ProductList extends Component{
                 pickerCancelBtnText: 'Cancel',
                 pickerConfirmBtnColor: [92,184,92,1],
                 pickerCancelBtnColor: [249,104,104,1],
-                pickerToolBarBg: [0,173,238,1],
+                pickerToolBarBg: [51,51,51,1],
                 pickerTitleColor: [255,255,255,1],
                 selectedValue: [2],
                 onPickerConfirm: async data => {
@@ -55,7 +55,6 @@ export default class ProductList extends Component{
 
                     data = [`${selectedValue}`];
                     target.selected_quantity = data;
-                    console.log(target.selected_quantity);
                     try {
                         let value = await AsyncStorage.getItem('@Store:pre_transfer_items')
                             ,already_in = false;
@@ -149,7 +148,7 @@ export default class ProductList extends Component{
                                         </View>
 
                                         <View>
-                                            <Text>SKU: { item.sku } / Barcode: { item.barcode }</Text>
+                                            <Text numberOfLines={1}>SKU: { item.sku } / Barcode: { item.barcode }</Text>
                                         </View>
 
                                         <View>

@@ -18,6 +18,12 @@ import {
 } from '../models';
 import DeviceInfo from 'react-native-device-info';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {
+    STATE_OFFLINE,
+    STATE_ONLINE,
+    alertNoConnection,
+    networkStore
+} from './net-listener';
 
 export default class SyncPage extends Component{
     
@@ -29,31 +35,12 @@ export default class SyncPage extends Component{
 
     componentWillMount(){
         this._getLastSync();
-    }
-
-    componentDidMount(){
-        NetInfo.isConnected.fetch().then(() => {
-            NetInfo.isConnected.fetch().then(isConnected => {
-                this.setState({
-                    inet: isConnected ? 'online':'offline'
-                })
+        networkStore.subscribe(state => {
+            this.setState({
+                inet: networkStore.getState()
             });
-            NetInfo.addEventListener('connectionChange', isConnected => {
-                const {type} = isConnected;
-                this.setState({
-                    inet: type !== 'none' && type !== 'unknown' ? 'online':'offline'
-                })                
-            })
-        });
+        }); 
     }
-
-    handleConnectivityChange = () => {
-        fetch('https://google.com')
-        .then(response => {
-            console.log(response.status === 200)
-        })
-        .catch(err => console.log(err))
-      }
 
     _getLastSync = async () => {
         
@@ -85,15 +72,12 @@ export default class SyncPage extends Component{
     }
 
     _synProducts = () => {
-        if(this.state.inet === 'offline'){
-            Alert.alert(
-                'Internet Connection, Offline',
-                'Please check that you are connected to the Internet and try again',
-                [
-                  {text: 'Ok'},
-                ]
-            ); return;
-        }
+        
+        if(this.state.inet === STATE_OFFLINE){
+            alertNoConnection();
+            return;
+        } 
+
         synProducts(this.props.realmInstance);
         (async () => {
             try{
@@ -109,15 +93,11 @@ export default class SyncPage extends Component{
     }
 
     _synTransfers = () => {
-        if(this.state.inet === 'offline'){
-            Alert.alert(
-                'Internet Connection, Offline',
-                'Please check that you are connected to the Internet and try again',
-                [
-                  {text: 'Ok'},
-                ]
-            ); return;
-        }
+        
+        if(this.state.inet === STATE_OFFLINE){
+            alertNoConnection();
+            return;
+        } 
 
         synTransfers(this.props.realmInstance);
         (async () => {
@@ -181,7 +161,7 @@ export default class SyncPage extends Component{
                         </Text>
                         <View style={SyncStyle.hintSub}>
                             <Text>
-                                Serial No. {DeviceInfo.getUniqueID()}
+                                Serial No. {DeviceInfo.getUniqueID().toUpperCase()}
                             </Text>
                         </View>
                     </View>

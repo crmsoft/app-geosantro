@@ -10,11 +10,18 @@ import { TranfersStyle } from '../../assets/styles/main';
 import _ from 'lodash';
 import { getDate, syncTransfer } from '../models';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {
+    STATE_OFFLINE,
+    STATE_ONLINE,
+    alertNoConnection,
+    networkStore
+} from '../sync/net-listener';
 
 export default class Transfers extends Component{
 
     state = {
-        data: []
+        data: [],
+        inet: 'offline'
     }
 
     _getList(){
@@ -56,6 +63,10 @@ export default class Transfers extends Component{
     }
 
     _syncTransfer( transfer_id ){
+        if(this.state.inet === STATE_OFFLINE){
+            alertNoConnection();
+            return;
+        }
         const to_by_synced = this._getList().filtered(`id=${transfer_id} AND synced=false`);
         if(to_by_synced[0]){
             syncTransfer(
@@ -79,6 +90,11 @@ export default class Transfers extends Component{
                 data: this._getList()
             });
         }
+        networkStore.subscribe(state => {
+            this.setState({
+                inet: networkStore.getState()
+            });
+        }); 
     }
 
     componentDidUpdate(prevProps, prevState){

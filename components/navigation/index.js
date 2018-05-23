@@ -4,6 +4,7 @@ import {
     TouchableHighlight ,
     View, 
     Image,
+    Keyboard,
     TextInput 
 } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -60,6 +61,9 @@ export default class Nav extends React.Component{
     render(){
         return (
             <Swiper 
+                onTouchStartCapture={() => {
+                    Keyboard.dismiss();
+                }}
                 onIndexChanged={ index => {
                     this.activeIndex = index;
                 }}

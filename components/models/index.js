@@ -6,7 +6,11 @@ import {
 } from './schmeas';
 import _ from 'lodash';
 import { default_image } from '../../assets/img/default-image.json';
-import config from './config';
+import DeviceInfo from 'react-native-device-info';
+
+const config = {
+    'api_key':DeviceInfo.getUniqueID()
+}
 
 // date in format : D/MM/Y h:mm
 export const getDate = () => {
