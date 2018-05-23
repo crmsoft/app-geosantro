@@ -85,12 +85,6 @@ export default class Transfers extends Component{
         console.log('componentDidUpdate');
         if(prevProps.realmInstance !==this.props.realmInstance){
             this.props.realmInstance.removeAllListeners();
-            this.props.realmInstance.addListener('change', () => {
-                this.setState({
-                    data: this._getList()
-                });
-                console.log('update the state');
-            });
             this.setState({
                 data: this._getList()
             });

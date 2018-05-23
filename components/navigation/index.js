@@ -31,14 +31,19 @@ export default class Nav extends React.Component{
     state = {
         instance: null,
     };
-
+    
     componentWillMount(){
         instance()
         .then( realm => {
             this.setState({
                 instance: realm
-            })
+            });
+            realm.addListener('change', this.updateUi.bind(this));
         })
+    }
+
+    componentWillUnmount(){
+        this.state.instance.removeListener('change',this.updateUi);
     }
 
     componentWillReceiveProps(nextProps){
@@ -48,8 +53,11 @@ export default class Nav extends React.Component{
         }
     }
 
+    updateUi(){
+        this.forceUpdate();
+    }
+
     render(){
-        console.log(this.activeIndex);
         return (
             <Swiper 
                 onIndexChanged={ index => {
@@ -58,7 +66,6 @@ export default class Nav extends React.Component{
                 style={PagesWrapperStyle.wrapper} 
                 showsPagination={true}
                 renderPagination={ (index,total,context) => {
-                    console.log(this.activeIndex);
                     return <NavigationPagination 
                                 index={index} 
                                 total={total} 

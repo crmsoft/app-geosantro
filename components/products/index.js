@@ -11,12 +11,9 @@ import {
 import {
     ProductListStyle
 } from '../../assets/styles/main';
-import DialogAndroid from 'react-native-dialogs';
-import { data } from './list.json';
 import _ from 'lodash';
 import { createStackNavigator } from 'react-navigation';
 import Picker from 'react-native-picker';
-
 export default class ProductList extends Component{
 
     state = {
@@ -28,15 +25,37 @@ export default class ProductList extends Component{
                             .objects('Product')
                                 .filtered(`id = ${item_id}`);
         if(target){
-            
+            const title = target[0].name.length > 20 ? target[0].name.substring(0,20) + `...`:target[0].name;
+            const data = `${target[0].stock}`.split('').map( i => {
+                return ['',0,1,2,3,4,5,6,7,8,9]
+            });
             Picker.init({
-                pickerData: Array.apply(null, Array(~~target[0].stock)).map(function (a,i) {
-                    return  i + 1;
-                }),
-                pickerTitleText: target[0].name,  
+                pickerData: data,
+                pickerTitleText:  title,  
+                pickerTextEllipsisLen: 9,
+                pickerConfirmBtnText: 'Add',
+                pickerCancelBtnText: 'Cancel',
+                pickerConfirmBtnColor: [92,184,92,1],
+                pickerCancelBtnColor: [249,104,104,1],
+                pickerToolBarBg: [0,173,238,1],
+                pickerTitleColor: [255,255,255,1],
                 selectedValue: [2],
                 onPickerConfirm: async data => {
+
+                    const selectedValue = parseInt(data.reduce((acc,i) => { return acc + i; },''))
+                    if(selectedValue > target[0].stock){
+                        Alert.alert(
+                            'Error',
+                            'Selected qunatity is greather than available stock',
+                            [
+                                { text:'ok' }
+                            ]
+                        ); return;
+                    }
+
+                    data = [`${selectedValue}`];
                     target.selected_quantity = data;
+                    console.log(target.selected_quantity);
                     try {
                         let value = await AsyncStorage.getItem('@Store:pre_transfer_items')
                             ,already_in = false;

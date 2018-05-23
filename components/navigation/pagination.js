@@ -18,7 +18,9 @@ const Tab = ({label, active, onPress, index}) => {
     return (
         <TouchableHighlight
             style={NavigationPagerStyle.tab}
-            onPress={ () => onPress(index) }
+            onPress={ () => { /**
+             * empty for now
+             */ } }
         >
             <View>
                 <View>
@@ -37,8 +39,7 @@ export default NavigationPagination = ({index, total, context}) => {
                 Tabs.map( (item, i) => <Tab 
                                             index={i}
                                             onPress={ tappedIndex => {
-                                                console.log(index - tappedIndex);
-                                                context.scrollBy(index - tappedIndex,true)
+                                                //context.scrollBy(index - tappedIndex,true)
                                             }}
                                             key={item} 
                                             label={item} 
