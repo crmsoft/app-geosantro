@@ -9,6 +9,7 @@ import {
 import { TranfersStyle } from '../../assets/styles/main';
 import _ from 'lodash';
 import { getDate, syncTransfer } from '../models';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class Transfers extends Component{
 
@@ -117,9 +118,7 @@ export default class Transfers extends Component{
                                 </View>
                                 <View style={TranfersStyle.statusWrapper}>
                                     <View style={TranfersStyle.statusContent}>
-                                        <Image 
-                                            style={TranfersStyle.statusIcon} 
-                                            source={require('../../assets/img/sync-success.png')}/>
+                                        <Icon name="wifi" size={20} style={TranfersStyle.statusIcon} />
                                         <Text>   </Text>
                                         <Text style={TranfersStyle.statusSuccessText}>Synced</Text>
                                         <Text style={TranfersStyle.syncDate}>{transfer.updated_at}</Text>
@@ -134,9 +133,7 @@ export default class Transfers extends Component{
                                     >
                                         <View 
                                             style={TranfersStyle.actionReorder}>
-                                            <Image 
-                                                style={TranfersStyle.statusIcon} 
-                                                source={require('../../assets/img/re-order.jpg')}/>
+                                            <Icon name="cached" size={20} style={TranfersStyle.reorderIcon} />
                                             <Text>  </Text>
                                             <Text 
                                                 style={TranfersStyle.actionText}>Reorder</Text>
@@ -156,7 +153,7 @@ export default class Transfers extends Component{
                                     </View>
                                     <View style={TranfersStyle.statusWrapper}>
                                         <View style={TranfersStyle.statusContent}>
-                                            <Image style={TranfersStyle.statusIcon} source={require('../../assets/img/no-sync.png')}/>
+                                            <Icon name="warning" size={20} style={TranfersStyle.statusNotSyncedIcon} />
                                             <Text>   </Text>
                                             <Text style={TranfersStyle.statusErrorText}>Not Synced</Text>
                                         </View>
@@ -169,9 +166,7 @@ export default class Transfers extends Component{
                                         >
                                             <View 
                                                 style={TranfersStyle.actionReorder}>
-                                                <Image 
-                                                    style={TranfersStyle.statusIcon} 
-                                                    source={require('../../assets/img/re-order.jpg')}/>
+                                                <Icon name="cached" size={20} style={TranfersStyle.reorderIcon} />
                                                 <Text>  </Text>
                                                 <Text 
                                                     style={TranfersStyle.actionText}>Reorder</Text>
@@ -182,9 +177,7 @@ export default class Transfers extends Component{
                                             onPress={ () => this._syncTransfer(transfer.id) }
                                         >
                                             <View style={TranfersStyle.actionSync}>
-                                                <Image 
-                                                    style={TranfersStyle.statusIcon} 
-                                                    source={require('../../assets/img/net-connection.png')}/>
+                                                <Icon name="wifi" size={20} style={TranfersStyle.reorderIcon} />
                                                 <Text>  </Text>
                                                 <Text 
                                                     style={TranfersStyle.actionText}>Sync</Text>
@@ -195,9 +188,7 @@ export default class Transfers extends Component{
                                             onPress={ () => this._removeUnsyncedTransfer(transfer.id) }
                                         >
                                             <View style={TranfersStyle.actionDelete}>
-                                                <Image 
-                                                    style={TranfersStyle.statusIcon} 
-                                                    source={require('../../assets/img/delete.jpg')}/>
+                                                <Icon name="delete-forever" size={20} style={TranfersStyle.reorderIcon} />
                                                 <Text>  </Text>
                                                 <Text 
                                                     style={TranfersStyle.actionText}>Delete</Text>

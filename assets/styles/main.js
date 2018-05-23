@@ -55,7 +55,15 @@ export const TranfersStyle = StyleSheet.create({
         color: COLOR_SUCCESS,        
     },
     statusIcon:{
-        marginLeft: -1 * SPACING
+        marginLeft: -1 * SPACING,
+        color: COLOR_SUCCESS
+    },
+    statusNotSyncedIcon:{
+        marginLeft: -1 * SPACING,
+        color: COLOR_ERROR
+    },
+    reorderIcon:{
+        color: 'white'
     },
     actionsWrapper:{
         flex: 1,
@@ -106,15 +114,16 @@ export const TranfersStyle = StyleSheet.create({
         flex: 1
     },
     requestTransferWrapper:{
-        height: BIG_BTN_HEIGHT,
-        backgroundColor: COLOR_PRIMARY,
         flex: 1,
         position: 'absolute',
         bottom: SPACING,
         left: SPACING,
         right: SPACING,
-        alignItems: 'center',
-        justifyContent: 'center'
+    },
+    requestTransferButton:{
+        flex: 1,
+        backgroundColor: COLOR_PRIMARY,
+        height: BIG_BTN_HEIGHT,
     },
     requestTransferText:{
         color: 'white',
@@ -192,7 +201,15 @@ export const ProductListStyle = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: COLOR_PRIMARY,
+        padding: SPACING * 2
+    },
+    itemActionDisabled:{ 
+        backgroundColor: 'white', 
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLOR_PRIMARY,
         padding: SPACING * 2,
+        opacity: .6
     },
     itemActionText:{
         color: 'white',

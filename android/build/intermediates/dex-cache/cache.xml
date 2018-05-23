@@ -3,273 +3,273 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\WORKSTASION\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\geosandro\react-native-device-info\unspecified\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_c14ac9c48b6f67eb0eaa3b050d0fb19c56f0ca5e.jar" />
+        sha1="a191119161c61cb6c69232da7824107a1dbe964c">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\geosandro-react-native-device-info-unspecified_29c2cf2803e301c589a940e9798143d13648be3c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\WORKSTASION\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.1.0\support-annotations-24.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8a23146e1a8c7cb4758e3d3f62449213f1e51f67">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\support-annotations-24.1.0_2042d5d743e7b12c7867d309e6ca8bed3390ef73.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="9340c4f95a4e3916c9ad70296e24576743743712">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.1.0_f9aa4cb9e2815148bf2b1a6b75ee10eedb0a7172.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.afollestad.material-dialogs\core\0.8.6.2\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="cbdf1602ce622f3445dc7513237f30930c6e4a5a">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.afollestad.material-dialogs-core-0.8.6.2_1ca92a88b6de189f8e61064f6391ced72416f1cc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\me.zhanghai.android.materialprogressbar\library\1.1.7\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="1478a113f04bf0b679037b4f6bd88bd1837b96a3">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\me.zhanghai.android.materialprogressbar-library-1.1.7_81430b80b6c78a1f72b799403abcb06a64bc7087.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\geosandro\realm\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="244b038f0f02e5f13542eaab0d632b76a5e1fee2">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\geosandro-realm-unspecified_e669104c1a8b2f42cd6290edbf44d0f52994fe3e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="4157816e81f0820983957687e9a6f4c1cea0f1e5">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.1.0_acab9cd9616be6cdd83085773d6d4e7030ae3b6d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8c854b30eca6c442fe842e66cd3b58c5dd08996f">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.1.0_13213796ebc1bed58e5bf5f2d1ee3577e0fd5622.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_aed68eea27c5113b034a6b60cfc1ba4cdbdc96c2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\geosandro\react-native-dialogs\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="4f44a2a8d64b19378802ee2da5c91cdead44126a">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\geosandro-react-native-dialogs-unspecified_bfc962d2294c04783f6b6ce7b9a9031b126cf782.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.fbui.textlayoutbuilder\textlayoutbuilder\1.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_fe88386209b161e25ace59465a459c95ab7c6d42.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\.gradle\caches\modules-2\files-2.1\org.nanohttpd\nanohttpd\2.2.0\73a02117620b6cc7683a1ed6ae24c2f36e2a715\nanohttpd-2.2.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="073a02117620b6cc7683a1ed6ae24c2f36e2a715">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\nanohttpd-2.2.0_1f6eb66724619e6b7de5be37afe688953335b921.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\1.3.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_5a863f37fee6a2550d343a4c9adb73421d2d7b5c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\1.3.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-1.3.0_7bbcbe966b28bbed0e42b82755468f1e16b97bde.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.6.0\3f9b16b774f2c36cfd86dd2053d0b3059531dacc\okhttp-urlconnection-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_f0387f532bf09254cce6d930ff27761302fcb3b2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\javax.inject-1_9541077303c00bc18e70e11c89cf3dc45fa9ad87.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_596d9a2d149454d6c53ce1229361006405801300.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.55.4\jars\libs\infer-annotations-4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_fe7356d7324f8ba416ac1646d847131ec5111833.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\okio-1.13.0_0832b2f1c3691a5949754c44682b10970ccc7c28.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\1.3.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-1.3.0_39ec8b8762582ba698638a336825031a7a485ed3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="ba8e8860f7e033c3a503b682337a4bafdf56e6ee">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.1.0_274d92e79ea02ca5cf24dd9d2633179ed6386da4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.6.0\69edde9fc4b01c9fd51d25b83428837478c27254\okhttp-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\okhttp-3.6.0_0a54730442f2ba87e69469f2a2106068861bcd09.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_cfa5d4aa725834c514ee3eb49142e6bf5fca54c8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\1.3.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-1.3.0_894f6dcecdbedee5e6bec1a6764ac1eaa2286968.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fresco\1.3.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fresco-1.3.0_16ee72e030003b145378d9622de14680d1d57ddc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.0\jars\libs\internal_impl-24.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8c7087216946c546f85a1242a2794c0f271e092c">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\internal_impl-24.1.0_ce94c5e7ceb49a617dc7267ac209e326f4ff29f6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.0\jars\classes.jar"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="e096a5d8343cc9c5a9f6eded36bd0f4c82f8c83e">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.1.0_9946411ec4b1b91197ebd2b9a6b55359f4610ecd.jar" />
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.1.0_a72679d4fca521eb0d4557fc7ef7432802fbec27.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.55.4\jars\classes.jar"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ba8e8860f7e033c3a503b682337a4bafdf56e6ee">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.1.0_c8934c44b1cbc4c18fba7c72ea7d86f54a39fa7c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fresco\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fresco-1.3.0_5302c8e2b768fb317c92b3e40d956cc4888949a6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\geosandro\react-native-vector-icons\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f2cf527de8d0bd35d72088fafea02395ba4a9eec">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\geosandro-react-native-vector-icons-unspecified_ce82b2505ebd226bb7aedbddd7fe42fd9e9b4ed5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\geosandro\react-native-picker\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3d120a8e3de59190c1bdf30887dda13db7827a61">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\geosandro-react-native-picker-unspecified_d4fc7033dae7580217acfb40d130de1d161e2eeb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\geosandro\realm\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="244b038f0f02e5f13542eaab0d632b76a5e1fee2">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\geosandro-realm-unspecified_b0abd529af60e82086d9cbcd5355ae4b3a988b31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.55.4\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.facebook.react-react-native-0.55.4_6ebfdf28283d810fe7b1da65a167f72d12cdc8e2.jar" />
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.react-react-native-0.55.4_1cfc7e08be4447873dcc01f7ea1ec210c385b134.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\exploded-aar\com.afollestad.material-dialogs\commons\0.8.6.2\jars\classes.jar"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_3e3540ffa75bc1c178d839dd1e370135dd17081a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-1.3.0_cbad1d2a077c53c15752b826508bc15f954a69b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-iid-10.0.1_2d46999d28d3a88f4e8aaadabdc2bcb151831512.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.afollestad.material-dialogs\core\0.8.6.2\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="cbdf1602ce622f3445dc7513237f30930c6e4a5a">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.afollestad.material-dialogs-core-0.8.6.2_3d81962bb76df5194261bf1759def39b175debf6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-1.3.0_e9a5c41841c2c79bf5dfc188edf0af43f095a7dd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_00512488c56f0c5b4fb6440a45ded208c174b873.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.afollestad.material-dialogs\commons\0.8.6.2\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="38955f75e5bdc80a7856eccbd256f75c1bc4bb41">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\com.afollestad.material-dialogs-commons-0.8.6.2_d8014f1e1a141854850acb6723039d04a405c4a5.jar" />
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.afollestad.material-dialogs-commons-0.8.6.2_7737ee520295d4b728fcff4881f8e9531b54a833.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\WORKSTASION\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\1.3.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-2\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_5713fcd786550ab783a62a967449a4df44159961.jar" />
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-1.3.0_b905d0d6164ac8284cddf5b7c2a3a33ec352654f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4157816e81f0820983957687e9a6f4c1cea0f1e5">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.1.0_65b257d354acf68608cc114ce51678997cbb6e3d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8c854b30eca6c442fe842e66cd3b58c5dd08996f">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.1.0_c93e97249ea12657433b0f310a223a1231f2d073.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_b2a17ea6dc84bf2bc8f9202a42d9eedacfd1acf1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\geosandro\react-native-dialogs\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4f44a2a8d64b19378802ee2da5c91cdead44126a">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\geosandro-react-native-dialogs-unspecified_cbe4af8a69cd304b3b3537f6102d1451d47711ab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-10.0.1_70cdfe149af2bc3ea4a88ab1fd1da357846d3920.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-10.0.1_ee57aea4970a6b05e85c4d3016c0d48671c30b09.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\me.zhanghai.android.materialprogressbar\library\1.1.7\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1478a113f04bf0b679037b4f6bd88bd1837b96a3">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\me.zhanghai.android.materialprogressbar-library-1.1.7_ef1a857d5097052c06d938a2af7e4b0f18fe98d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.0.1_ad252885595fc586c1b903be96a7caa22fbf6088.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9340c4f95a4e3916c9ad70296e24576743743712">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.1.0_d6ed56436ca34f21543a794ad61b7fec0e6c458c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.fbui.textlayoutbuilder\textlayoutbuilder\1.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_999d2a2247f9dff150421133f3a1d0ff357176ce.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.0\jars\libs\internal_impl-24.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8c7087216946c546f85a1242a2794c0f271e092c">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\internal_impl-24.1.0_ae8871b7fb920c9566530162da31919380dc78ab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\geosandro\autocompletetextview\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="81e1a828b4e7e60727156088c9a5e155eb5f89f7">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\geosandro-autocompletetextview-unspecified_1d225c95d8126c05316600b66b4594f4d8c51294.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-10.0.1_9581ca8b1f7454f229c8f78186b9cfd1046661e9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.55.4\jars\libs\infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="C:\Users\WORKSTASION\Desktop\mmv-pr\test\test-3\app-geosantro\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_321556eef529834421b0756b880498a02f92deed.jar" />
     </item>
 
 </items>

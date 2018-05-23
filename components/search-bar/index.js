@@ -12,6 +12,8 @@ import {
 import { 
     COLOR_PRIMARY 
 } from '../../assets/styles/colors';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 export default class SearchBar extends React.Component{
     
@@ -20,10 +22,7 @@ export default class SearchBar extends React.Component{
             <View style={SearchBarStyles.container}>
                 <View style={SearchBarStyles.row}>
                     <TouchableHighlight style={SearchBarStyles.iconWrapper}>
-                        <Image
-                            style={SearchBarStyles.imageIcon}
-                            source={require('../../assets/img/search.jpg')}
-                        />
+                        <Icon name="search" size={30} color="#333333" />
                     </TouchableHighlight>
                     <View style={SearchBarStyles.searchInputWrapper}>
                         <TextInput
@@ -36,10 +35,7 @@ export default class SearchBar extends React.Component{
                     <TouchableHighlight 
                         onPress={ () => this.props.transfersPress() }
                         style={SearchBarStyles.iconWrapper}>
-                        <Image
-                            style={SearchBarStyles.imageIcon}
-                            source={require('../../assets/img/sync.jpg')}
-                        />
+                            <Icon name="compare-arrows" size={30} color="#333333" />
                     </TouchableHighlight >
                 </View>
             </View>

@@ -9,14 +9,15 @@ import {
     Image,
     Alert
 } from 'react-native';
-import { SyncStyle } from '../../assets/styles/main';
+import { SyncStyle, TranfersStyle } from '../../assets/styles/main';
 import DialogAndroid from 'react-native-dialogs';
 import { 
     synProducts,
     synTransfers,
     getDate
 } from '../models';
-import config from '../models/config';
+import DeviceInfo from 'react-native-device-info';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class SyncPage extends Component{
     
@@ -133,7 +134,6 @@ export default class SyncPage extends Component{
     }
 
     render(){
-        console.log(`inet state is : ${this.state.inet}`)
         return (
             <ScrollView>
                 <View style={SyncStyle.wrapper}>
@@ -148,7 +148,7 @@ export default class SyncPage extends Component{
                             onPress={ this._synProducts }
                             style={SyncStyle.actionInner}>
                             <View style={SyncStyle.actionContent}>
-                                <Image style={SyncStyle.actionIcon} source={require('../../assets/img/net-connection.png')}/>
+                                <Icon name="wifi" size={25} style={TranfersStyle.reorderIcon} />
                                 <Text>   </Text>
                                 <Text style={SyncStyle.actionText}>Synchronize</Text>
                             </View>
@@ -167,7 +167,7 @@ export default class SyncPage extends Component{
                             onPress={ this._synTransfers }
                             style={SyncStyle.actionInner}>
                             <View style={SyncStyle.actionContent}>
-                                <Image style={SyncStyle.actionIcon} source={require('../../assets/img/net-connection.png')}/>
+                                <Icon name="wifi" size={25} style={TranfersStyle.reorderIcon} />
                                 <Text>   </Text>
                                 <Text style={SyncStyle.actionText}>Synchronize</Text>
                             </View>
@@ -181,7 +181,7 @@ export default class SyncPage extends Component{
                         </Text>
                         <View style={SyncStyle.hintSub}>
                             <Text>
-                                Serial No. {config.api_key}
+                                Serial No. {DeviceInfo.getUniqueID()}
                             </Text>
                         </View>
                     </View>

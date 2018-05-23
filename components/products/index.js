@@ -87,7 +87,7 @@ export default class ProductList extends Component{
             this.setState({
                 data: 
                     this.props.search.length ? 
-                    this.props.realmInstance.objects('Product').filtered(`name CONTAINS[c] '${this.props.search}'`) :
+                    this.props.realmInstance.objects('Product').filtered(`name CONTAINS[c] '${this.props.search}' OR sku CONTAINS[c] '${this.props.search}' OR barcode CONTAINS[c] '${this.props.search}' OR supplier CONTAINS[c] '${this.props.search}'`) :
                     this.props.realmInstance.objects('Product')
             });
         }

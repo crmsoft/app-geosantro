@@ -1,5 +1,8 @@
 rootProject.name = 'geosandro'
 
+include ':react-native-picker'
+project(':react-native-picker').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-picker/android')
+
 include ':autocompletetextview' // Add this
 project(':autocompletetextview').projectDir = file("../node_modules/autocompletetextview/android")
 
@@ -10,3 +13,9 @@ include ':realm'
 project(':realm').projectDir = new File(rootProject.projectDir, '../node_modules/realm/android')
 
 include ':app'
+
+include ':react-native-device-info'
+project(':react-native-device-info').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-device-info/android')
+
+include ':react-native-vector-icons'
+project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')

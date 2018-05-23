@@ -3,6 +3,7 @@ package com.geosandro;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.beefe.picker.PickerViewPackage;
 import com.reactlibrary.RNAutocompletetextviewPackage;
 import com.aakashns.reactnativedialogs.ReactNativeDialogsPackage;
@@ -10,6 +11,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.oblador.vectoricons.VectorIconsPackage;
 
 import io.realm.react.RealmReactPackage;
 
@@ -28,10 +30,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+           new RNDeviceInfo(),
             new PickerViewPackage(),
             new RNAutocompletetextviewPackage(),
             new ReactNativeDialogsPackage(),
-              new RealmReactPackage()
+              new RealmReactPackage(),
+              new VectorIconsPackage()
       );
     }
 
