@@ -31,12 +31,6 @@ export default class Transfers extends Component{
                                     .filtered(`id = ${transfer_id}`);
                 if(to_delete){
                     this.props.realmInstance.delete(to_delete)
-                    // tmp work around
-                    setTimeout(() => {
-                        /*this.setState({
-                            data: this._getList()
-                        });*/
-                    },100)
                 }
             });
         }

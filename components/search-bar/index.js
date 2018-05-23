@@ -26,7 +26,8 @@ export default class SearchBar extends React.Component{
                         />
                     </TouchableHighlight>
                     <View style={SearchBarStyles.searchInputWrapper}>
-                        <TextInput 
+                        <TextInput
+                            onFocus={ () => this.props.handleFocus() } 
                             onChangeText={(text) => this.props.handleFilter(text.trim())}
                             style={SearchBarStyles.searchInput}
                             placeholder="Search Products"

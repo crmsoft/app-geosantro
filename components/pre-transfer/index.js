@@ -6,6 +6,7 @@ import {
     TouchableHighlight,
     ScrollView,
     Picker,
+    Button,
     Alert,
     AsyncStorage
 } from 'react-native';
@@ -134,87 +135,107 @@ export default class ProductList extends Component{
         });
     }
 
+    getEmptyListContent(){
+        return (
+            <View
+                style={{flex:1,justifyContent:'center',alignItems:'center'}}
+            >
+                <View style={{paddingBottom:10}}>
+                    <Text>Add some products to create new transfer</Text>
+                </View>
+                <Button 
+                    onPress={ () => { this.props.navigation.goBack(); } }
+                    title="Add Products" />
+            </View>
+        )
+    }
+
     render(){
         return (
-            <View style={TranfersStyle.listWrapper}>
-                { this.state.items.length ?
-                    <ScrollView>
-                    {
-                        this.state.items.map((item, i) => {
-                            return (
-                                <View 
-                                    key={i} 
-                                    style={ProductListStyle.wrapper}>
-                                    
+            <View style={{flex:1}}>
+                { 
+                    this.state.items.length ?
+                    <View 
+                        style={TranfersStyle.listWrapper}
+                    >
+                        <ScrollView >
+                        {
+                            this.state.items.map((item, i) => {
+                                return (
                                     <View 
-                                        style={ProductListStyle.item}>
-
-                                        <View style={{ padding: 5 }}>
-                                            
-                                            <Image  
-                                                source={{
-                                                    uri: item.image
-                                                }}
-                                                style={ProductListStyle.image}/>
-                                        </View>
-
+                                        key={i} 
+                                        style={ProductListStyle.wrapper}>
+                                        
                                         <View 
-                                            style={ProductListStyle.infoWrapper}>
-                                            
-                                            <View>
-                                                <Text 
-                                                    style={ProductListStyle.itemTitle}>{ item.name }</Text>
+                                            style={ProductListStyle.item}>
+
+                                            <View style={{ padding: 5 }}>
+                                                
+                                                <Image  
+                                                    source={{
+                                                        uri: item.image
+                                                    }}
+                                                    style={ProductListStyle.image}/>
                                             </View>
 
-                                            <View>
-                                                <Text>{ item.supplier }</Text>
-                                            </View>
+                                            <View 
+                                                style={ProductListStyle.infoWrapper}>
+                                                
+                                                <View>
+                                                    <Text 
+                                                        numberOfLines={1}
+                                                        style={ProductListStyle.itemTitle}>{ item.name }</Text>
+                                                </View>
 
-                                            <View>
-                                                <Text>{ item.sku } / { item.barcode }</Text>
-                                            </View>
+                                                <View>
+                                                    <Text>{ item.supplier }</Text>
+                                                </View>
 
-                                            <View style={TranfersStyle.pickerWrapper}>
-                                                <Picker
-                                                    prompt={ `Qunatity: ${item.name}` }
-                                                    selectedValue={~~item.selected_quantity[0]}
-                                                    onValueChange={(itemValue) => this.changeQuantity(item.id,itemValue)}>
-                                                    
-                                                    {
-                                                        Array.apply(null, Array(~~item.stock)).map(function (a,i) {
-                                                            const index = ++i;
-                                                            return <Picker.Item label={`${index}`} value={index} key={`option_${index}`} />
-                                                        })
-                                                    }
-                                                </Picker>
+                                                <View>
+                                                    <Text numberOfLines={1}>SKU: { item.sku } / Barcode: { item.barcode }</Text>
+                                                </View>
+
+                                                <View style={TranfersStyle.pickerWrapper}>
+                                                    <Picker
+                                                        prompt={ `Qunatity: ${item.name}` }
+                                                        selectedValue={~~item.selected_quantity[0]}
+                                                        onValueChange={(itemValue) => this.changeQuantity(item.id,itemValue)}>
+                                                        
+                                                        {
+                                                            Array.apply(null, Array(~~item.stock)).map(function (a,i) {
+                                                                const index = ++i;
+                                                                return <Picker.Item label={`${index}`} value={index} key={`option_${index}`} />
+                                                            })
+                                                        }
+                                                    </Picker>
+                                                </View>
+
                                             </View>
 
                                         </View>
 
+                                        <View>
+                                            <TouchableHighlight 
+                                                onPress={ () => this.removeFromList(item.id) }
+                                                style={TranfersStyle.actonRemove}>
+                                                <Text 
+                                                    style={ProductListStyle.itemActionText}>Remove</Text>
+                                            </TouchableHighlight>
+                                        </View>
+                                        
                                     </View>
-
-                                    <View>
-                                        <TouchableHighlight 
-                                            onPress={ () => this.removeFromList(item.id) }
-                                            style={TranfersStyle.actonRemove}>
-                                            <Text 
-                                                style={ProductListStyle.itemActionText}>Remove</Text>
-                                        </TouchableHighlight>
-                                    </View>
-                                    
-                                </View>
-                            )
-                        })
-                    }
-                    </ScrollView> : (<View><Text>Empty</Text></View>)
+                                )
+                            })
+                        }
+                        </ScrollView> 
+                        <View style={TranfersStyle.requestTransferWrapper}>
+                            <Button 
+                                onPress={ () => this.createTransfer() }
+                                style={TranfersStyle.requestTransferButton} 
+                                title="Request Transfer" />
+                        </View>
+                    </View> : this.getEmptyListContent()
                 }
-                <View style={TranfersStyle.requestTransferWrapper}>
-                    <TouchableHighlight
-                        style={{ flex:1, alignContent:'center',justifyContent:'center' }}
-                        onPress={ () => this.createTransfer() }>
-                        <Text style={TranfersStyle.requestTransferText}>Request Transfer</Text>
-                    </TouchableHighlight>
-                </View>
             </View>
         )
     }

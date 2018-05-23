@@ -29,12 +29,10 @@ export default class ProductList extends Component{
                                 .filtered(`id = ${item_id}`);
         if(target){
             
-            const data = Array.apply(null, Array(~~target[0].stock)).map(function (a,i) {
-                return  i + 1;
-            });
-
             Picker.init({
-                pickerData: data,
+                pickerData: Array.apply(null, Array(~~target[0].stock)).map(function (a,i) {
+                    return  i + 1;
+                }),
                 pickerTitleText: target[0].name,  
                 selectedValue: [2],
                 onPickerConfirm: async data => {
@@ -123,6 +121,7 @@ export default class ProductList extends Component{
                                         
                                         <View>
                                             <Text 
+                                                numberOfLines={1}
                                                 style={ProductListStyle.itemTitle}>{ item.name }</Text>
                                         </View>
 
@@ -131,11 +130,11 @@ export default class ProductList extends Component{
                                         </View>
 
                                         <View>
-                                            <Text>{ item.sku } / { item.barcode }</Text>
+                                            <Text>SKU: { item.sku } / Barcode: { item.barcode }</Text>
                                         </View>
 
                                         <View>
-                                            <Text>{ item.stock }</Text>
+                                            <Text>Stock: { item.stock }</Text>
                                         </View>
 
                                     </View>
@@ -145,11 +144,12 @@ export default class ProductList extends Component{
                                 <View>
                                     <TouchableHighlight 
                                         onPress={ () => {
-                                            this.promtQunatity( item.id );    
+                                            item.stock && this.promtQunatity( item.id );    
                                         }}
-                                        style={ProductListStyle.itemAction}>
+                                        style={ item.stock <= 0 ? ProductListStyle.itemActionDisabled : ProductListStyle.itemAction}>
                                         <Text 
-                                            style={ProductListStyle.itemActionText}>Add to Transfer</Text>
+                                            style={ProductListStyle.itemActionText}
+                                        >Add to Transfer</Text>
                                     </TouchableHighlight>
                                 </View>
                                 

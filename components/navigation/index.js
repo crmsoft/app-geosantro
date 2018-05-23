@@ -26,9 +26,11 @@ const pages = [
 
 export default class Nav extends React.Component{
 
+    activeIndex = 0;
+
     state = {
-        instance: null
-    }
+        instance: null,
+    };
 
     componentWillMount(){
         instance()
@@ -39,12 +41,29 @@ export default class Nav extends React.Component{
         })
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.showProductsTab){
+            this.activeIndex = 0;
+            this.forceUpdate();
+        }
+    }
+
     render(){
+        console.log(this.activeIndex);
         return (
             <Swiper 
+                onIndexChanged={ index => {
+                    this.activeIndex = index;
+                }}
                 style={PagesWrapperStyle.wrapper} 
                 showsPagination={true}
-                renderPagination={NavigationPagination}
+                renderPagination={ (index,total,context) => {
+                    console.log(this.activeIndex);
+                    return <NavigationPagination 
+                                index={index} 
+                                total={total} 
+                                context={context} />
+                }}
                 showsButtons={false}
                 loop={false}
             >
@@ -53,7 +72,13 @@ export default class Nav extends React.Component{
                 pages.map( (Page, i) => {
                     return (
                         <View key={i} style={PagesWrapperStyle.page}>
-                            <Page realmInstance={this.state.instance} search={this.props.searchTerm} />
+                            <Page 
+                                onHeaderPress={ index => {
+                                    // scrollBy(index, animated)
+                                    console.log(index);
+                                }}
+                                realmInstance={this.state.instance} 
+                                search={this.props.searchTerm} />
                         </View>
                     )
                 })

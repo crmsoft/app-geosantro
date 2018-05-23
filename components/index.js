@@ -12,7 +12,8 @@ import { createStackNavigator } from 'react-navigation';
 export default class AppView extends React.Component {
     
     state = {
-        term: ''
+        term: '',
+        focused: false
     }
 
     constructor(props){
@@ -23,13 +24,17 @@ export default class AppView extends React.Component {
         return (
             <View style={ContainerStyles.mainContainer}>
                 <SearchBar 
+                    handleFocus={ () => this.setState({ focused:true }) }
                     handleFilter={ term => this.setState({term}) }
                     transfersPress={
                         () => {
                             this.props.navigate('UnsavedTransfers');
                         }
                     }/>
-                <Nav searchTerm={this.state.term} />
+                <Nav 
+                    showProductsTab={this.state.focused}
+                    searchTerm={this.state.term} 
+                    />
             </View>
         );
     }

@@ -1,7 +1,8 @@
 import React from 'react';
 import {
     View,
-    Text
+    Text,
+    TouchableHighlight
 } from 'react-native';
 import {
     NavigationPagerStyle
@@ -13,22 +14,35 @@ const Tabs = [
     'Sync'
 ];
 
-const Tab = ({label, active}) => {
+const Tab = ({label, active, onPress, index}) => {
     return (
-        <View style={NavigationPagerStyle.tab}>
+        <TouchableHighlight
+            style={NavigationPagerStyle.tab}
+            onPress={ () => onPress(index) }
+        >
             <View>
-                <Text style={NavigationPagerStyle.tabText}>{label}</Text>
-                <View style={NavigationPagerStyle[ active ? 'tabActive':'tabInActive' ] } />
+                <View>
+                    <Text style={NavigationPagerStyle.tabText}>{label}</Text>
+                    <View style={NavigationPagerStyle[ active ? 'tabActive':'tabInActive' ] } />
+                </View>
             </View>
-        </View>
+        </TouchableHighlight>
     );
 }
 
-export default NavigationPagination = (index, total, context) => {
+export default NavigationPagination = ({index, total, context}) => {
     return (
         <View style={NavigationPagerStyle.wrapper}>
             {
-                Tabs.map( (item, i) => <Tab key={item} label={item} active={ i === index }/> )
+                Tabs.map( (item, i) => <Tab 
+                                            index={i}
+                                            onPress={ tappedIndex => {
+                                                console.log(index - tappedIndex);
+                                                context.scrollBy(index - tappedIndex,true)
+                                            }}
+                                            key={item} 
+                                            label={item} 
+                                            active={ i === index } /> )
             }
         </View>
     )
