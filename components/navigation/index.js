@@ -33,6 +33,7 @@ export default class Nav extends React.Component{
 
     state = {
         instance: null,
+        hidden: true
     };
     
     componentWillMount(){
@@ -49,7 +50,7 @@ export default class Nav extends React.Component{
     componentDidMount(){
         Keyboard.addListener('keyboardDidShow', () => {
             this.setState({
-                startIndex: 0
+                hidden: false
             });
         });
     }
@@ -64,6 +65,14 @@ export default class Nav extends React.Component{
         }
     }
 
+    componentDidUpdate(){
+        if(!this.state.hidden){
+            if(this.activeIndex !== 0){
+                this.swiper.scrollBy(0 - this.activeIndex,true);
+            }
+        }
+    }
+
     updateUi(){
         this.forceUpdate();
     }
@@ -71,6 +80,7 @@ export default class Nav extends React.Component{
     render(){
         return (
             <Swiper 
+                ref={(swiper) => {this.swiper = swiper;}}
                 index={this.state.startIndex}
                 onTouchStartCapture={() => {
                     Keyboard.dismiss();
