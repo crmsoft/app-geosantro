@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     Text,
-    TouchableHighlight
+    TouchableOpacity,
+    Keyboard
 } from 'react-native';
 import {
     NavigationPagerStyle
@@ -16,11 +17,10 @@ const Tabs = [
 
 const Tab = ({label, active, onPress, index}) => {
     return (
-        <TouchableHighlight
+        <TouchableOpacity
+            activeOpacity={.7}
             style={NavigationPagerStyle.tab}
-            onPress={ () => { /**
-             * empty for now
-             */ } }
+            onPress={ () => onPress(index) }
         >
             <View>
                 <View>
@@ -28,7 +28,7 @@ const Tab = ({label, active, onPress, index}) => {
                     <View style={NavigationPagerStyle[ active ? 'tabActive':'tabInActive' ] } />
                 </View>
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
     );
 }
 
@@ -39,7 +39,8 @@ export default NavigationPagination = ({index, total, context}) => {
                 Tabs.map( (item, i) => <Tab 
                                             index={i}
                                             onPress={ tappedIndex => {
-                                                //context.scrollBy(index - tappedIndex,true)
+                                                context.scrollBy(tappedIndex - index,true)
+                                                Keyboard.dismiss();
                                             }}
                                             key={item} 
                                             label={item} 

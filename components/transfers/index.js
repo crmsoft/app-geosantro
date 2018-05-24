@@ -21,7 +21,7 @@ export default class Transfers extends Component{
 
     state = {
         data: [],
-        inet: 'offline'
+        inet: networkStore.getState()
     }
 
     _getList(){
@@ -100,7 +100,6 @@ export default class Transfers extends Component{
     componentDidUpdate(prevProps, prevState){
         console.log('componentDidUpdate');
         if(prevProps.realmInstance !==this.props.realmInstance){
-            this.props.realmInstance.removeAllListeners();
             this.setState({
                 data: this._getList()
             });

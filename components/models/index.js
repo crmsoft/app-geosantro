@@ -132,7 +132,7 @@ export const synTransfers = async ( dbInstance ) => {
     })
     const content = await rawResponse.json();
     const list = _get(content, 'data', undefined);
-    console.log(list);
+    
     if(list){
         // fetch required fields from json...
        
@@ -166,7 +166,7 @@ export const syncTransfer = async ( dbInstance, data, old_one ) => {
         })
     })
     const content = await rawResponse.json();
-    
+
     // if the back-end return us some data,
     // the request was successful
     const list = _get(content, 'data', undefined);

@@ -29,6 +29,8 @@ export default class Nav extends React.Component{
 
     activeIndex = 0;
 
+    showIndex = 0;
+
     state = {
         instance: null,
     };
@@ -37,10 +39,19 @@ export default class Nav extends React.Component{
         instance()
         .then( realm => {
             this.setState({
-                instance: realm
+                instance: realm,
+                startIndex: 0
             });
             realm.addListener('change', this.updateUi.bind(this));
-        })
+        });
+    }
+
+    componentDidMount(){
+        Keyboard.addListener('keyboardDidShow', () => {
+            this.setState({
+                startIndex: 0
+            });
+        });
     }
 
     componentWillUnmount(){
@@ -50,7 +61,6 @@ export default class Nav extends React.Component{
     componentWillReceiveProps(nextProps){
         if(nextProps.showProductsTab){
             this.activeIndex = 0;
-            this.forceUpdate();
         }
     }
 
@@ -61,6 +71,7 @@ export default class Nav extends React.Component{
     render(){
         return (
             <Swiper 
+                index={this.state.startIndex}
                 onTouchStartCapture={() => {
                     Keyboard.dismiss();
                 }}
@@ -69,7 +80,7 @@ export default class Nav extends React.Component{
                 }}
                 style={PagesWrapperStyle.wrapper} 
                 showsPagination={true}
-                renderPagination={ (index,total,context) => {
+                renderPagination={(index,total,context) => {
                     return <NavigationPagination 
                                 index={index} 
                                 total={total} 
@@ -84,10 +95,6 @@ export default class Nav extends React.Component{
                     return (
                         <View key={i} style={PagesWrapperStyle.page}>
                             <Page 
-                                onHeaderPress={ index => {
-                                    // scrollBy(index, animated)
-                                    console.log(index);
-                                }}
                                 realmInstance={this.state.instance} 
                                 search={this.props.searchTerm} />
                         </View>

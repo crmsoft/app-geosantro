@@ -19,7 +19,9 @@ const netState = (state = STATE_OFFLINE, action) => {
 }
 
 export const networkStore = createStore(netState);
-
+networkStore.subscribe(() => {
+    console.log( `the current inet state is: ${networkStore.getState()}` )
+})
 export const alertNoConnection = () => {
     Alert.alert(
         'Internet Connection, Offline',

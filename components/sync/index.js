@@ -30,7 +30,7 @@ export default class SyncPage extends Component{
     state = {
         last_sync_products: '',
         last_sync_transfers: '',
-        inet: 'offline'
+        inet: networkStore.getState()
     }
 
     componentWillMount(){

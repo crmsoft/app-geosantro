@@ -95,7 +95,9 @@ export default class ProductList extends Component{
 
         const creation_date = getDate();
         
-        const next_id = realm.objects('Transfer').max('id') + 1;
+        let next_id = realm.objects('Transfer').max('id');
+        if(next_id === undefined) {next_id = -1}
+        ++next_id;
 
         const transfer = {
             id: next_id,
