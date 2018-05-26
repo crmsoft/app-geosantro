@@ -35,6 +35,8 @@ export default class Nav extends React.Component{
         instance: null,
         hidden: true
     };
+
+    keyBoardHidden = true;
     
     componentWillMount(){
         instance()
@@ -49,10 +51,15 @@ export default class Nav extends React.Component{
 
     componentDidMount(){
         Keyboard.addListener('keyboardDidShow', () => {
-            this.setState({
+            /*this.setState({
                 hidden: false
-            });
+            });*/
+            this.keyBoardHidden = false;
+            this.forceUpdate();
         });
+        Keyboard.addListener('keyboardDidHide', () => {
+            this.keyBoardHidden = true;
+        })
     }
 
     componentWillUnmount(){
@@ -66,7 +73,7 @@ export default class Nav extends React.Component{
     }
 
     componentDidUpdate(){
-        if(!this.state.hidden){
+        if(!this.keyBoardHidden){
             if(this.activeIndex !== 0){
                 this.swiper.scrollBy(0 - this.activeIndex,true);
             }

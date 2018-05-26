@@ -122,7 +122,7 @@ export default class Transfers extends Component{
                                         <Text style={TranfersStyle.addDate}>Added on {transfer.created_at}</Text>
                                     </View>
                                     <View>
-                                        <Text># {totalItems}</Text>
+                                        <Text>Items: {totalItems}</Text>
                                     </View>
                                 </View>
                                 <View style={TranfersStyle.statusWrapper}>
