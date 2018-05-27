@@ -33,7 +33,7 @@ export default class Nav extends React.Component{
 
     state = {
         instance: null,
-        hidden: true
+        dbTrigger: 0
     };
 
     keyBoardHidden = true;
@@ -51,9 +51,6 @@ export default class Nav extends React.Component{
 
     componentDidMount(){
         Keyboard.addListener('keyboardDidShow', () => {
-            /*this.setState({
-                hidden: false
-            });*/
             this.keyBoardHidden = false;
             this.forceUpdate();
         });
@@ -81,7 +78,9 @@ export default class Nav extends React.Component{
     }
 
     updateUi(){
-        this.forceUpdate();
+        this.setState({
+            dbTrigger: ++this.state.dbTrigger
+        })
     }
 
     render(){
@@ -112,6 +111,7 @@ export default class Nav extends React.Component{
                     return (
                         <View key={i} style={PagesWrapperStyle.page}>
                             <Page 
+                                updateFromDbEevent={this.state.dbTrigger}
                                 realmInstance={this.state.instance} 
                                 search={this.props.searchTerm} />
                         </View>

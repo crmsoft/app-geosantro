@@ -1,26 +1,45 @@
-import React, { Component } from 'react';
-import { 
+import React, {Component} from 'react';
+import {
     View,
     Text,
     Image,
-    TouchableHighlight,
-    ScrollView,
+    Alert,
     AsyncStorage,
-    Alert
+    TouchableHighlight,
+    FlatList
 } from 'react-native';
 import {
     ProductListStyle
 } from '../../assets/styles/main';
 import _ from 'lodash';
-import { createStackNavigator } from 'react-navigation';
 import Picker from 'react-native-picker';
+import { default_image } from '../../assets/img/default-image.json';
+
 export default class ProductList extends Component{
 
     state = {
         data: []
     }
 
-    promtQunatity( item_id ){
+    _keyExtractor = (item, index) => `${index}`;
+
+    shouldComponentUpdate(nextProps, nextState){
+        return (nextProps.realmInstance !==this.props.realmInstance || 
+            this.state.data.length !== nextState.data.length ||
+            nextProps.search !== this.props.search ||
+            nextProps.updateFromDbEevent !== this.props.updateFromDbEevent)
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        const data = this.props.search.length ? 
+        this.props.realmInstance.objects('Product').filtered(`name CONTAINS[c] '${this.props.search}' OR sku CONTAINS[c] '${this.props.search}' OR barcode CONTAINS[c] '${this.props.search}' OR supplier CONTAINS[c] '${this.props.search}'`) :
+        this.props.realmInstance.objects('Product');
+        this.setState({
+            data: data
+        });
+    }
+
+    _promtQuantity(item_id){
         const target = this.props.realmInstance
                             .objects('Product')
                                 .filtered(`id = ${item_id}`);
@@ -91,92 +110,74 @@ export default class ProductList extends Component{
         }
     }
 
-    componentWillMount(){
-        if(this.props.realmInstance !== null){
-            this.setState({
-                data: this.props.realmInstance.objects('Product')
-            });
-        }
-    }
+    _renderAnItem({item}){
+        return(
+            <View 
+                style={ProductListStyle.wrapper}>
+                
+                <View 
+                    style={ProductListStyle.item}>
 
-    componentDidUpdate(prevProps, prevState){
+                    <View style={{ padding: 5 }}>
+                        
+                        <Image  
+                            source={{
+                                uri: item.image.length === 0 ? default_image:item.image
+                            }}
+                            style={ProductListStyle.image}/>
+                    </View>
 
-        if(prevProps.search !== this.props.search || prevProps.realmInstance !==this.props.realmInstance){
-            this.setState({
-                data: 
-                    this.props.search.length ? 
-                    this.props.realmInstance.objects('Product').filtered(`name CONTAINS[c] '${this.props.search}' OR sku CONTAINS[c] '${this.props.search}' OR barcode CONTAINS[c] '${this.props.search}' OR supplier CONTAINS[c] '${this.props.search}'`) :
-                    this.props.realmInstance.objects('Product')
-            });
-        }
-    }
+                    <View 
+                        style={ProductListStyle.infoWrapper}>
+                        
+                        <View>
+                            <Text 
+                                numberOfLines={1}
+                                style={ProductListStyle.itemTitle}>{ item.name }</Text>
+                        </View>
 
-    render() {
-      return (
-            <View>
-                <ScrollView>
-                {
-                    this.state.data.map((item, i) => {
-                        return (
-                            <View 
-                                key={i} 
-                                style={ProductListStyle.wrapper}>
-                                
-                                <View 
-                                    style={ProductListStyle.item}>
+                        <View>
+                            <Text>{ item.supplier }</Text>
+                        </View>
 
-                                    <View style={{ padding: 5 }}>
-                                        
-                                        <Image  
-                                            source={{
-                                                uri: item.image
-                                            }}
-                                            style={ProductListStyle.image}/>
-                                    </View>
+                        <View>
+                            <Text numberOfLines={1}>SKU: { item.sku } / Barcode: { item.barcode }</Text>
+                        </View>
 
-                                    <View 
-                                        style={ProductListStyle.infoWrapper}>
-                                        
-                                        <View>
-                                            <Text 
-                                                numberOfLines={1}
-                                                style={ProductListStyle.itemTitle}>{ item.name }</Text>
-                                        </View>
+                        <View>
+                            <Text>Stock: { item.stock }</Text>
+                        </View>
 
-                                        <View>
-                                            <Text>{ item.supplier }</Text>
-                                        </View>
+                    </View>
 
-                                        <View>
-                                            <Text numberOfLines={1}>SKU: { item.sku } / Barcode: { item.barcode }</Text>
-                                        </View>
+                </View>
 
-                                        <View>
-                                            <Text>Stock: { item.stock }</Text>
-                                        </View>
-
-                                    </View>
-
-                                </View>
-
-                                <View>
-                                    <TouchableHighlight 
-                                        onPress={ () => {
-                                            item.stock && this.promtQunatity( item.id );    
-                                        }}
-                                        style={ item.stock <= 0 ? ProductListStyle.itemActionDisabled : ProductListStyle.itemAction}>
-                                        <Text 
-                                            style={ProductListStyle.itemActionText}
-                                        >Add to Transfer</Text>
-                                    </TouchableHighlight>
-                                </View>
-                                
-                            </View>
-                        )
-                    })
-                }
-                </ScrollView>
+                <View>
+                    <TouchableHighlight 
+                        onPress={ () => {
+                            item.stock && this._promtQuantity( item.id );    
+                        }}
+                        style={ item.stock <= 0 ? ProductListStyle.itemActionDisabled : ProductListStyle.itemAction}>
+                        <Text 
+                            style={ProductListStyle.itemActionText}
+                        >Add to Transfer</Text>
+                    </TouchableHighlight>
+                </View>
+                
             </View>
         )
     }
+
+    render(){
+        return (
+            <View>
+                <FlatList 
+                    keyExtractor={this._keyExtractor}
+                    data={this.state.data}
+                    renderItem={ this._renderAnItem.bind(this) }
+                />
+            </View>
+        );
+    }
+
 }

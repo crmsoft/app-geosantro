@@ -15,6 +15,7 @@ import {
     TranfersStyle
 } from '../../assets/styles/main';
 import { instance, getDate } from '../models/';
+import { default_image } from '../../assets/img/default-image.json';
 
 export default class ProductList extends Component{
 
@@ -175,7 +176,7 @@ export default class ProductList extends Component{
                                                 
                                                 <Image  
                                                     source={{
-                                                        uri: item.image
+                                                        uri: item.image.length === 0 ? default_image:item.image
                                                     }}
                                                     style={ProductListStyle.image}/>
                                             </View>

@@ -4,8 +4,8 @@ import {
     ScrollView,
     Text,
     TouchableHighlight,
+    ActivityIndicator,
     AsyncStorage,
-    NetInfo,
     Image,
     Alert
 } from 'react-native';
@@ -30,7 +30,9 @@ export default class SyncPage extends Component{
     state = {
         last_sync_products: '',
         last_sync_transfers: '',
-        inet: networkStore.getState()
+        inet: networkStore.getState(),
+        productsSyncronizationInProgress: false,
+        transfersSyncronizationInProgress: false
     }
 
     componentWillMount(){
@@ -71,46 +73,100 @@ export default class SyncPage extends Component{
         })
     }
 
-    _synProducts = () => {
+    _synProducts = async () => {
         
+        // avoid press if we already syncing... 
+        if(this.state.productsSyncronizationInProgress){
+            return;
+        }
+
         if(this.state.inet === STATE_OFFLINE){
             alertNoConnection();
             return;
         } 
 
-        synProducts(this.props.realmInstance);
-        (async () => {
-            try{
-                const s_date = getDate();
-                await AsyncStorage.setItem('@Store:sync_p', s_date)
+        this.setState({
+            productsSyncronizationInProgress: true
+        }, () => {
+            synProducts(this.props.realmInstance)
+            .then(() => {
+                (async () => {
+                    try{
+                        const s_date = getDate();
+                        await AsyncStorage.setItem('@Store:sync_p', s_date)
+                        this.setState({
+                            last_sync_products: s_date,
+                            productsSyncronizationInProgress: false
+                        })
+                    }catch(err){
+                        console.log(err);
+                        this.setState({
+                            productsSyncronizationInProgress: false
+                        })
+                    }
+                })()
+            })
+            .catch( err => {
+                Alert.alert(
+                    'Error',
+                    err,
+                    [
+                        { text:'ok' }
+                    ]
+                );
                 this.setState({
-                    last_sync_products: s_date
+                    productsSyncronizationInProgress: false
                 })
-            }catch(err){
-                console.log(err);
-            }
-        })()
+            })
+        })
     }
 
-    _synTransfers = () => {
+    _synTransfers = async () => {
         
+        // avoid press if we already syncing... 
+        if(this.state.transfersSyncronizationInProgress){
+            return;
+        }
+
         if(this.state.inet === STATE_OFFLINE){
             alertNoConnection();
             return;
         } 
 
-        synTransfers(this.props.realmInstance);
-        (async () => {
-            try{
-                const s_date = getDate();
-                await AsyncStorage.setItem('@Store:sync_t', s_date)
+        this.setState({
+            transfersSyncronizationInProgress: true 
+        },() => {
+            synTransfers(this.props.realmInstance)
+            .then(() => {
+                (async () => {
+                    try{
+                        const s_date = getDate();
+                        await AsyncStorage.setItem('@Store:sync_t', s_date)
+                        this.setState({
+                            last_sync_transfers: s_date,
+                            transfersSyncronizationInProgress: false
+                        })
+                    }catch(err){
+                        console.log(err);
+                        this.setState({
+                            transfersSyncronizationInProgress: false
+                        })
+                    }
+                })()
+            })
+            .catch(err => {
+                Alert.alert(
+                    'Error',
+                    err,
+                    [
+                        {text:'ok'}
+                    ]
+                );
                 this.setState({
-                    last_sync_transfers: s_date
+                    transfersSyncronizationInProgress: false
                 })
-            }catch(err){
-                console.log(err);
-            }
-        })()
+            })
+        });
     }
 
     render(){
@@ -128,7 +184,11 @@ export default class SyncPage extends Component{
                             onPress={ this._synProducts }
                             style={SyncStyle.actionInner}>
                             <View style={SyncStyle.actionContent}>
-                                <Icon name="wifi" size={25} style={TranfersStyle.reorderIcon} />
+                                {
+                                    this.state.productsSyncronizationInProgress ? 
+                                    <ActivityIndicator size="small" color="#00ff00" /> :
+                                    <Icon name="wifi" size={25} style={TranfersStyle.reorderIcon} />
+                                }
                                 <Text>   </Text>
                                 <Text style={SyncStyle.actionText}>Synchronize</Text>
                             </View>
@@ -147,7 +207,11 @@ export default class SyncPage extends Component{
                             onPress={ this._synTransfers }
                             style={SyncStyle.actionInner}>
                             <View style={SyncStyle.actionContent}>
-                                <Icon name="wifi" size={25} style={TranfersStyle.reorderIcon} />
+                                {
+                                    this.state.transfersSyncronizationInProgress ? 
+                                    <ActivityIndicator size="small" color="#00ff00" /> :
+                                    <Icon name="wifi" size={25} style={TranfersStyle.reorderIcon} />
+                                }
                                 <Text>   </Text>
                                 <Text style={SyncStyle.actionText}>Synchronize</Text>
                             </View>

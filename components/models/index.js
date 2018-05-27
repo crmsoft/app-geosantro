@@ -5,12 +5,17 @@ import {
     TransferItem
 } from './schmeas';
 import _ from 'lodash';
-import { default_image } from '../../assets/img/default-image.json';
 import DeviceInfo from 'react-native-device-info';
 
+const API_REJECT = 'Please syncronize your serial number with back office.';
+const NET_FAIL = 'Syncronization failed, check your iternet connection and try again later.';
+const UNKNOW_ERROR = 'Some unexpected error was accourred.';
+// api credentials
 const config = {
     'api_key':DeviceInfo.getUniqueID()
 }
+// image in base64
+const img_prefix = 'data:image/png;base64,';
 
 // date in format : D/MM/Y h:mm
 export const getDate = () => {
@@ -72,89 +77,145 @@ const transferResponseToModel = ( list ) => {
     });
 }
 
-export const synProducts = async ( dbInstance ) => {
-    // fetch from back-end
-    const rawResponse = await fetch('http://portal.geosantro.com/api/v1/stock-movement/products', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(config)
+/**
+ * API Product list request 
+ * and fill db with retrieved data
+ * @param dbInstance 
+ */
+export const synProducts = (dbInstance) => {
+    return new Promise((resolve,reject) => {
+        fetch('https://portal.geosantro.com/api/v1/stock-movement/products', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(config)
+        })
+        .then(raw => raw.json())
+        .then(json => {
+            const list = _get(json, 'data', undefined);
+            if(!list){
+                return reject(API_REJECT);
+            }
+            // use helper to insert data to db...
+            this._synProducts(list,dbInstance)
+            .then(resolved => resolve())
+            .catch(err => reject(err));
+        })
+        .catch(err => reject(NET_FAIL))
     });
-    const content = await rawResponse.json();
-
-    const list = _get(content, 'data', undefined);
-
-    if(list){
-
-        // fetch required fields from json...
-        const data = list.map((product) => {
-            const img_prefix = 'data:image/png;base64,';
-            const first_name = _get(product,'relationships.supplier.attributes.first_name','-');
-            const last_name = _get(product,'relationships.supplier.attributes.last_name','');
-            return  {
-                id: ~~product.id,
-                name: _get(product,'attributes.name','-'),
-                sku: _get(product,'attributes.sku','-'),
-                stock: _get(product,'attributes.stock','-'),
-                image: img_prefix + _get(product,'attributes.image', default_image),
-                barcode: _get(product,'attributes.barcode','-'),
-                supplier: `${first_name} ${last_name}`
-            };
-        });
-
-        // save to db...
-        dbInstance.write(() => {
-            // before store - remove old ones
-            const old = dbInstance.objects(Product.name);
-            if(old)
-                dbInstance.delete( old );
-            // push items
-            data.forEach(item => {
-                dbInstance.create(Product.name, item);                
-            });
-        });
-    }else{
-        console.log( 'the response was unsuccessful' )
-    }    
 }
 
-export const synTransfers = async ( dbInstance ) => {
-    // fetch from back-end
-    const rawResponse = await fetch('http://portal.geosantro.com/api/v1/stock-movement/transfers', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(config)
-    })
-    const content = await rawResponse.json();
-    const list = _get(content, 'data', undefined);
-    
-    if(list){
-        // fetch required fields from json...
-       
-        dbInstance.write(() => {
-            // before store - remove old ones
-            const old = dbInstance.objects(Transfer.name).filtered('synced = true');
-            if(old)
-                dbInstance.delete( old );
-
-            transferResponseToModel(list).forEach(item => {
-                dbInstance.create(Transfer.name, item);                
+/**
+ * process the server response
+ * from product list api request
+ * and fill db with new fresh data
+ * @param list
+ * @param dbInstance
+ */
+_synProducts = ( list, dbInstance ) => {
+    return new Promise((resolve,reject) => {
+        try{
+            var data = list.map((product) => {
+                const first_name = _get(product,'relationships.supplier.attributes.first_name','-');
+                const last_name = _get(product,'relationships.supplier.attributes.last_name','');
+                const img = _get(product,'attributes.image', '');
+                return  {
+                    id: ~~product.id,
+                    name: _get(product,'attributes.name','-'),
+                    sku: _get(product,'attributes.sku','-'),
+                    stock: _get(product,'attributes.stock','-'),
+                    image: img.length > 0 ? `${img_prefix}${img}`:``,
+                    barcode: _get(product,'attributes.barcode','-'),
+                    supplier: `${first_name} ${last_name}`
+                };
             });
-        });
         
-    }else{
-        console.log( 'the response was unsuccessful' )
-    }  
+            // save to db...
+            dbInstance.write(() => {
+                // before store - remove old ones
+                const old = dbInstance.objects(Product.name);
+                if(old)
+                    dbInstance.delete( old );
+                // push items
+                data.forEach(item => {
+                    dbInstance.create(Product.name, item);                
+                });
+                // the synconization is successeded and finalized.
+                resolve('done');
+            });  
+        }catch(err){
+            console.log(err);
+            reject(UNKNOW_ERROR)
+        }
+    }); 
 }
 
+/**
+ * API request to load transfer list
+ * @param {Realm} dbInstance 
+ */
+export const synTransfers = (dbInstance) => {
+    return new Promise((resolve,reject) => {
+        fetch('https://portal.geosantro.com/api/v1/stock-movement/transfers', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(config)
+        })
+        .then(raw => raw.json())
+        .then(json => {
+            const list = _get(json, 'data', undefined);
+            if(!list){
+                return reject(API_REJECT);
+            }
+            this._synTransfers(list,dbInstance)
+            .then(resolved => resolve())
+            .catch(err => reject(err))
+        })
+        .catch(err => reject(NET_FAIL))
+    });
+}
+
+/**
+ * write to db retrieved data
+ * @param list 
+ * @param dbInstance
+ */
+_synTransfers = ( list, dbInstance ) => {
+    return new Promise((resolve,reject) => {
+        try{
+            dbInstance.write(() => {
+                // before store - remove old ones
+                const old = dbInstance.objects(Transfer.name).filtered('synced = true');
+                if(old)
+                    dbInstance.delete( old );
+        
+                transferResponseToModel(list).forEach(item => {
+                    dbInstance.create(Transfer.name, item);                
+                });
+                resolve('done');
+            });
+        }catch(err){
+            console.log(err);
+            reject(UNKNOW_ERROR)
+        }
+    })
+}
+
+/**
+ * push to API new Transfer
+ * @param {Realm} dbInstance 
+ * @param {Transfer} data 
+ * @param {Transfer} old_one 
+ */
 export const syncTransfer = async ( dbInstance, data, old_one ) => {
+    console.log('syncTransfer')
     // fetch from back-end
-    const rawResponse = await fetch('http://portal.geosantro.com/api/v1/stock-movement/transfers/store', {
+    const rawResponse = await fetch('https://portal.geosantro.com/api/v1/stock-movement/transfers/store', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -165,10 +226,9 @@ export const syncTransfer = async ( dbInstance, data, old_one ) => {
             items: data
         })
     })
-    const content = await rawResponse.json();
-
     // if the back-end return us some data,
     // the request was successful
+    const content = await rawResponse.json();
     const list = _get(content, 'data', undefined);
 
     if(list){
